@@ -1,3 +1,56 @@
+/* tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* prime ng */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("./assets/Fonts/Quicksand/Quicksand-Medium.ttf") format("woff");
+}
+
+.quicksand {
+  font-family: "Quicksand", sans-serif;
+}
+
+.menu-a {
+  @apply flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700;
+}
+
+.error {
+  @apply text-red-600 font-semibold text-sm;
+}
+
+.icon {
+  @apply text-xl mr-2  ml-1;
+}
+
+.label-form {
+  @apply block mb-2 text-sm font-bold text-blue-900;
+}
+
+.input-icon {
+  @apply absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none;
+}
+
+.input {
+  @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5;
+}
+
+.input-select {
+  @apply w-full p-1 bg-gray-200 rounded-lg uppercase border-gray-300 border;
+}
+
+.btn-save {
+  @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center;
+}
+
+.btn-delete {
+  @apply ml-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center;
+}
+
+.btn-list {
+  @apply ml-2 flex items-center justify-center text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center;
+}
