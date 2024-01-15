@@ -1,6 +1,35 @@
 @if (loading) {
 <app-load>Iniciando Sesión ...</app-load>
 }
+
+<p-dialog
+  *ngIf="visible"
+  header="BIENVENIDO A MEC SYSTEM"
+  [(visible)]="visible"
+  class="w-full"
+>
+  <p class=" ">
+    <span>Mecánica: </span>
+    <span class="font-medium text-blue-600">{{ res.company.name }}</span> <br>
+    <span>Bienvenido(a): </span>
+    <span class="font-medium"
+      >{{ res.user.names }} {{ res.user.surnames }}</span
+    >
+    <br />
+    <span>Correo Electrónico:</span>
+    <span class="text-blue-600"> {{ res.user.email }} </span>
+    <br />
+    <span>Contraseña:</span>
+    <span class="text-blue-600"> MECSystem </span> <br />
+  </p>
+  <a
+    routerLink="/auth/login"
+    class="font-bold text-blue-600 hover:underline text-center"
+  >
+    Iniciar Sesión</a
+  >
+</p-dialog>
+
 <div class="flex flex-col items-center bg-gray-100 px-6 mx-auto lg:py-0">
   <h1
     class="flex items-center mt-20 mb-6 text-2xl md:text-4xl font-semibold text-blue-900"
@@ -25,51 +54,51 @@
             >Taller/Mecánica</label
           >
           <input
-            type="email"
-            name="email"
-            placeholder="••••••••@••••••••"
-            [(ngModel)]="email"
+            type="text"
+            name="name_company"
+            placeholder=""
+            [(ngModel)]="item.name_company"
             autocomplete="off"
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
           />
-          @if (errors) {
-          <span class="error">{{ errors.email }}</span>
+          @if (res) {
+          <span class="error">{{ res.name_company }}</span>
           }
         </div>
         <div>
           <label
             for="user"
             class="block mb-2 text-sm font-bold text-blue-900 dark:text-white"
-            >Nombres</label
+            >Nombres Completos</label
           >
           <input
-            type="email"
-            name="email"
-            placeholder="••••••••@••••••••"
-            [(ngModel)]="email"
+            type="text"
+            name="names"
+            placeholder=""
+            [(ngModel)]="item.names"
             autocomplete="off"
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
           />
-          @if (errors) {
-          <span class="error">{{ errors.email }}</span>
+          @if (res) {
+          <span class="error">{{ res.names }}</span>
           }
         </div>
         <div>
           <label
             for="user"
             class="block mb-2 text-sm font-bold text-blue-900 dark:text-white"
-            >Apellidos</label
+            >Apellidos Completos</label
           >
           <input
-            type="email"
-            name="email"
-            placeholder="••••••••@••••••••"
-            [(ngModel)]="email"
+            type="text"
+            name="surnames"
+            placeholder=""
+            [(ngModel)]="item.surnames"
             autocomplete="off"
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
           />
-          @if (errors) {
-          <span class="error">{{ errors.email }}</span>
+          @if (res) {
+          <span class="error">{{ res.surnames }}</span>
           }
         </div>
         <div>
@@ -81,13 +110,13 @@
           <input
             type="email"
             name="email"
-            placeholder="••••••••@••••••••"
-            [(ngModel)]="email"
+            placeholder=""
+            [(ngModel)]="item.email"
             autocomplete="off"
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
           />
-          @if (errors) {
-          <span class="error">{{ errors.email }}</span>
+          @if (res) {
+          <span class="error">{{ res.email }}</span>
           }
         </div>
         <div>
@@ -97,22 +126,22 @@
             >Teléfono</label
           >
           <input
-            type="email"
-            name="email"
-            placeholder="••••••••@••••••••"
-            [(ngModel)]="email"
+            type="text"
+            name="phone"
+            placeholder=""
+            [(ngModel)]="item.phone"
             autocomplete="off"
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5"
           />
-          @if (errors) {
-          <span class="error">{{ errors.email }}</span>
+          @if (res) {
+          <span class="error">{{ res.phone }}</span>
           }
         </div>
         <button
           (click)="register()"
           class="w-full font-bold text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
-          INGRESAR
+          REGISTRARSE
         </button>
         <p class="text-sm font-light text-blue-500 text-center">
           <a

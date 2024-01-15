@@ -91,23 +91,18 @@ export class ApiService {
     this.router.navigate([url]);
   }
 
-  api(
-    url: string,
-    type?: string,
-    body?: any,
-    api: string = 'api'
-  ): Observable<any> {
+  api(url: string, type?: string, body?: any): Observable<any> {
     switch (type) {
       case 'get':
-        return this.http.get(`${this.apiUrl}/${api}/${url}`);
+        return this.http.get(`${this.apiUrl}/${url}`);
       case 'post':
-        return this.http.post(`${this.apiUrl}/${api}/${url}`, body);
+        return this.http.post(`${this.apiUrl}/${url}`, body);
       case 'put':
-        return this.http.put(`${this.apiUrl}/${api}/${url}`, body);
+        return this.http.put(`${this.apiUrl}/${url}`, body);
       case 'delete':
-        return this.http.delete(`${this.apiUrl}/${api}/${url}`);
+        return this.http.delete(`${this.apiUrl}/${url}`);
       default:
-        return this.http.get(`${this.apiUrl}/${api}/${url}`);
+        return this.http.get(`${this.apiUrl}/${url}`);
     }
   }
 }

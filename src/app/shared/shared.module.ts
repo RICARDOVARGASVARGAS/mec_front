@@ -8,6 +8,7 @@ import { SearchComponent } from './search/search.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { SysComponent } from './sys/sys.component';
 import { TitleComponent } from './title/title.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { TitleComponent } from './title/title.component';
     SysComponent,
     TitleComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   exports: [
     TitleComponent,
     NavbarComponent,

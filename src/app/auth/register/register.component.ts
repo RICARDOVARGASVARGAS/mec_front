@@ -8,34 +8,25 @@ import { ApiService } from '../../services/api.service';
 })
 export class RegisterComponent {
   loading: boolean = false;
-  email: string = '';
-  password: string = '';
-  errors: any = null;
-
+  item: any = {};
+  res: any = null;
+  visible = false;
   constructor(private service: ApiService) {}
 
   register() {
-    console.log(this.email);
     this.loading = true;
-    this.errors = null;
-    this.service.login(this.email, this.password).subscribe(
+    this.res = null;
+    this.service.api('company/registerCompany', 'post', this.item).subscribe(
       (res: any) => {
-        console.log(res);
-        if (res.user.status == 'active') {
-          if (this.service.saveLocalStorage(res)) {
-            location.reload();
-          } else {
-            this.service.toast('error', 'ERROR DE RED');
-          }
-        } else {
-          this.service.toast('error', 'SU CUENTA HA SIDO SUSPENDIDA');
-        }
+        this.visible = true;
+        this.res = res;
+        this.service.toast('success', 'REGISTRO EXITOSO');
+        this.item = {};
+        this.loading = false;
       },
       (err: any) => {
-        this.errors = err.error.error;
-        console.log(this.errors);
-        this.service.toast('error', 'CREDENCIALES INCORRECTAS');
-        console.log(err);
+        this.res = err.error.errors;
+        this.service.toast('error', 'ERROR EN EL REGISTRO');
         this.loading = false;
       },
       () => {

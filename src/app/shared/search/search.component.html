@@ -1,1 +1,45 @@
-<p>search works!</p>
+<div class="flex my-1 w-full">
+  <select
+    (change)="sendSearch()"
+    [(ngModel)]="per_page"
+    class="bg-gray-50 w-18 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+  >
+    @for (item of results; track item.value) {
+    <option value="{{ item.value }}">
+      {{ item.name }}
+    </option>
+    }
+  </select>
+
+  <div class="relative w-full">
+    <div
+      class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+    >
+      <i class="fa-solid fa-gears text-gray-500"></i>
+    </div>
+    <input
+      type="text"
+      [(ngModel)]="search"
+      (change)="sendSearch()"
+      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Buscar ..."
+      required
+    />
+    <button
+      (click)="clear()"
+      type="button"
+      class="absolute inset-y-0 right-0 flex items-center pr-3"
+    >
+      <i class="fa-solid fa-delete-left text-gray-500"></i>
+    </button>
+  </div>
+
+  <button
+    (click)="sendSearch()"
+    class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+  >
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+
+  <ng-content #search></ng-content>
+</div>
