@@ -15,7 +15,6 @@ export class LoginComponent {
   constructor(private service: ApiService) {}
 
   login() {
-    console.log(this.email);
     this.loading = true;
     this.errors = null;
     this.service.login(this.email, this.password).subscribe(
@@ -23,6 +22,7 @@ export class LoginComponent {
         console.log(res);
         if (res.user.status == 'active') {
           if (this.service.saveLocalStorage(res)) {
+            this.service.toast('success', 'INICIANDO SESIÓN');
             location.reload();
           } else {
             this.service.toast('error', 'ERROR DE RED');
@@ -32,10 +32,9 @@ export class LoginComponent {
         }
       },
       (err: any) => {
-        this.errors = err.error.error;
-        console.log(this.errors);
-        this.service.toast('error', 'CREDENCIALES INCORRECTAS');
         console.log(err);
+        this.errors = err.error.error;
+        this.service.toast('error', 'CREDENCIALES INCORRECTAS');
         this.loading = false;
       },
       () => {

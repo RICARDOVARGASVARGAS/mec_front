@@ -53,7 +53,7 @@ export class ApiService {
 
   // Iniciar Sesión
   login(email: string, password: string) {
-    return this.http.post(`${this.apiUrl}auth/login`, {
+    return this.http.post(`${this.apiUrl}/auth/login`, {
       email: email,
       password: password,
     });
