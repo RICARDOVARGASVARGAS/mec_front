@@ -27,10 +27,18 @@
           </svg>
         </button>
         <a href="" onclick="return false;" class="flex ml-2 md:mr-24">
-          <img src="assets/img/logo.png" class="h-8 mr-3" alt="MECWeb" />
+          <img
+            [src]="
+              user.company.storage
+                ? service.apiUrl + '/' + user.company.storage
+                : 'assets/img/logo.png'
+            "
+            class="h-8 mr-3"
+            alt="MECWeb"
+          />
           <span
             class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white"
-            >GSPL</span
+            >{{ user.company.name | uppercase }}</span
           >
         </a>
       </div>

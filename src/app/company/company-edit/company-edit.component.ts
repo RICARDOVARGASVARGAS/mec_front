@@ -4,7 +4,7 @@ import { ApiService } from '../../services/api.service';
 @Component({
   selector: 'app-company-edit',
   templateUrl: './company-edit.component.html',
-  styleUrl: './company-edit.component.css'
+  styleUrl: './company-edit.component.css',
 })
 export class CompanyEditComponent {
   loading = false;
@@ -12,10 +12,18 @@ export class CompanyEditComponent {
   errors: any = null;
 
   constructor(public service: ApiService) {
+    this.getItem();
+  }
+
+  getItem() {
     this.service
-      .api(`companies/${service.user.company_id}`, 'get')
+      .api(`company/getCompany/${this.service.user.company_id}`, 'get')
       .subscribe((res: any) => {
         this.item = res.data;
+        localStorage.setItem('company', JSON.stringify(this.item));
+        const user = JSON.parse(localStorage.getItem('user') ?? '');
+        user.company = this.item;
+        localStorage.setItem('user', JSON.stringify(user));
       });
   }
 
@@ -23,14 +31,17 @@ export class CompanyEditComponent {
     this.loading = true;
     this.errors = null;
     this.service
-      .api(`companies/${this.service.user.company_id}`, 'put', this.item)
+      .api(
+        `company/updateCompany/${this.service.user.company_id}`,
+        'put',
+        this.item
+      )
       .subscribe(
         (res: any) => {
           this.loading = false;
-          this.service.toast('success', 'Empresa Actualizada.');
+          this.service.toast('success', 'Mecánica Actualizada.');
         },
         (err: any) => {
-          console.log(err);
           this.loading = false;
           this.errors = err.error.errors;
           this.service.toast('error', 'Registro fallido');

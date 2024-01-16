@@ -1,19 +1,19 @@
 <app-load *ngIf="loading"></app-load>
 
-<app-title>Actualizar Empresa</app-title>
+<app-title>Actualizar Mecánica</app-title>
 
-<!-- <img
+<img
   [src]="
-    item.storage ? service.apiSystem + item.storage : 'assets/img/logo.png'
+    item.storage ? service.apiUrl + '/' + item.storage : 'assets/img/logo.png'
   "
-  class="rounded-md w-36 h-36 mx-auto"
-/> -->
+  class="rounded-md w-36 h-36 mx-auto my-2"
+/>
 
 <form>
   <div class="px-2 py-3">
     <div class="grid gap-2 mb-6 md:grid-cols-2">
       <div>
-        <label class="label-form">Nombre</label>
+        <label class="label-form">Nombre Mecánica</label>
         <div class="relative">
           <div class="input-icon">
             <i class="fa-solid fa-id-card-clip text-gray-500"></i>
@@ -28,40 +28,6 @@
         </div>
         <span class="error" *ngIf="errors">{{ errors.name }}</span>
       </div>
-
-      <div>
-        <label class="label-form">Correo Electrónico</label>
-        <div class="relative">
-          <div class="input-icon">
-            <i class="fa-solid fa-signature text-gray-500"></i>
-          </div>
-          <input
-            name="email"
-            [(ngModel)]="item.email"
-            type="text"
-            autocomplete="off"
-            class="input"
-          />
-        </div>
-        <span class="error" *ngIf="errors">{{ errors.email }}</span>
-      </div>
-
-      <div>
-        <label class="label-form"> Teléfono </label>
-        <div class="relative">
-          <div class="input-icon">
-            <i class="fa-solid fa-signature text-gray-500"></i>
-          </div>
-          <input
-            name="phone"
-            [(ngModel)]="item.phone"
-            type="text"
-            autocomplete="off"
-            class="input"
-          />
-        </div>
-        <span class="error" *ngIf="errors">{{ errors.phone }}</span>
-      </div>
     </div>
 
     <button
@@ -72,11 +38,11 @@
       ACTUALIZAR
     </button>
 
-    <!-- <app-file
-      class="ml-2"
-      [item]="service.user.company"
+    <app-file
+      [id]="item.id"
       model="Company"
       storage="companies"
-    ></app-file> -->
+      (message)="getItem()"
+    ></app-file>
   </div>
 </form>

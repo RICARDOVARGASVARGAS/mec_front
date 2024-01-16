@@ -3,8 +3,9 @@ import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-file',
+  standalone: false,
   templateUrl: './file.component.html',
-  styleUrl: './file.component.css',
+  styleUrls: ['./file.component.css'],
 })
 export class FileComponent {
   @Input() id?: any;
@@ -32,23 +33,22 @@ export class FileComponent {
 
       // Subir una imagen
       if (!this.multiple) {
-        this.service.api('uploadFile', 'post', formData).subscribe(
+        this.service.api('image/uploadFile', 'post', formData).subscribe(
           (res: any) => {
+            this.loading = false;
             this.service.toast('success', res.message);
             this.file = null;
             this.message.emit();
           },
           (err: any) => {
+            this.loading = false;
             console.log(err);
             this.service.toast('error', err.error.message);
-          },
-          () => {
-            this.loading = false;
           }
         );
       } else {
         // Multiple
-        this.service.api('uploadImageMany', 'post', formData).subscribe(
+        this.service.api('image/uploadImageMany', 'post', formData).subscribe(
           (res: any) => {
             this.service.toast('success', res.message);
             this.file = null;
