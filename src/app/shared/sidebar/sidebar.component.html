@@ -5,80 +5,16 @@
 >
   <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
     <ul class="space-y-2">
-      <li *setPermission="['person.index']">
+      <li *setPermission="['company.edit']">
         <a
           onclick="return false;"
-          (click)="goPage('person/index')"
+          (click)="goPage('company/edit')"
           class="menu-a"
         >
           <i class="fa-solid fa-users text-xl ml-1"></i>
           <span
             class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-            >Personas</span
-          >
-        </a>
-      </li>
-      <li *setPermission="['ground.index']">
-        <a
-          onclick="return false;"
-          (click)="goPage('property/ground/index')"
-          class="menu-a"
-        >
-          <i class="fa-solid fa-tree-city text-xl"></i>
-          <span
-            class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-            >Propiedades</span
-          >
-        </a>
-      </li>
-      <li *setPermission="['company.index']">
-        <a
-          onclick="return false;"
-          (click)="goPage('company/index')"
-          class="menu-a"
-        >
-          <i class="fa-solid fa-store text-xl mr-1"></i>
-          <span
-            class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-            >Negocios</span
-          >
-        </a>
-      </li>
-
-      <li *setPermission="['user.index']">
-        <a onclick="return false;" (click)="goPage('user')" class="menu-a">
-          <i class="fa-solid fa-user-shield icon"></i>
-          <span
-            class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-            >Administradores</span
-          >
-        </a>
-      </li>
-
-      <li *setPermission="['card.index']">
-        <a
-          onclick="return false;"
-          (click)="goPage('card/index')"
-          class="menu-a"
-        >
-          <i class="fa-solid fa-id-card text-xl"></i>
-          <span
-            class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-            >Carnets de Salud</span
-          >
-        </a>
-      </li>
-
-      <li *setPermission="['lesson.index']">
-        <a
-          onclick="return false;"
-          (click)="goPage('lesson/index')"
-          class="menu-a"
-        >
-          <i class="fa-solid fa-chalkboard-user text-xl"></i>
-          <span
-            class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-            >Capacitaciones</span
+            >Empresa</span
           >
         </a>
       </li>
