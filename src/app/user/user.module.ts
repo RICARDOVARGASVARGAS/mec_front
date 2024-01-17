@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { ImageModule } from 'primeng/image';
+import { DirectivesModule } from '../directives/directives.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ImageModule } from 'primeng/image';
     NzPopconfirmModule,
     NzTreeModule,
     ImageModule,
+    DirectivesModule
   ],
 })
 export class UserModule {}

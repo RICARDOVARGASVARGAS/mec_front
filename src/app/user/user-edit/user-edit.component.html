@@ -105,7 +105,7 @@
         <i class="fa-solid fa-pen-to-square"></i>
       </button>
 
-      <a
+      <a  *setPermission="['user.destroy']"
         nz-popconfirm
         [nzPopconfirmTitle]="
           'Eliminar Administrador: ' + item.names + ' ' + item.surnames
@@ -120,11 +120,11 @@
         <i class="fa-solid fa-trash"></i>
       </a>
 
-      <a (click)="service.goPage('user/index')" class="btn-list">
+      <a  *setPermission="['user.index']" (click)="service.goPage('user/index')" class="btn-list">
         <i class="fa-solid fa-table"></i>
       </a>
 
-      <a
+      <a  *setPermission="['user.permission']"
         (click)="service.goPage('user/permission/' + item.id)"
         class="btn-list"
       >
