@@ -22,7 +22,6 @@ export class UserEditComponent {
   getData() {
     this.service.api(`user/getUser/${this.id}`, 'get').subscribe((res: any) => {
       this.item = res.data;
-      console.log(this.item);
       if (this.service.user.id == this.id) {
         const user:any = JSON.parse(localStorage.getItem('user') ?? '');
         user.names = this.item.names;

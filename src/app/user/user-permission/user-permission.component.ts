@@ -21,13 +21,15 @@ export class UserPermissionComponent {
 
   ngOnInit(): void {
     this.service
-      .api(`users/${this.id}?included=permissions`, 'get')
+      .api(`user/getUser/${this.id}?included=permissions`, 'get')
       .subscribe((res: any) => {
+        console.log(res);
         this.item = res.data;
         this.checkPermission();
       });
-    this.service.api(`modules`, 'get').subscribe((res: any) => {
+    this.service.api(`user/getModules`, 'get').subscribe((res: any) => {
       this.modules = res.data;
+      console.log(res);
       this.makeNode();
     });
   }
@@ -88,7 +90,7 @@ export class UserPermissionComponent {
 
   updatePermissions() {
     this.service
-      .api('users/updatePermission', 'post', {
+      .api('user/updatePermission', 'post', {
         user_id: this.id,
         permissions: this.permissions.join(','),
       })

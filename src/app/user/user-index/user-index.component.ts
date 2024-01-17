@@ -32,7 +32,6 @@ export class UserIndexComponent {
       })
       .subscribe(
         (res: any) => {
-          console.log(res);
           this.loading = false;
           this.data = res.data;
           res.meta ? (this.meta = res.meta) : (this.meta = null);
