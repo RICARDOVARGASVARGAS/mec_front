@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
-  styleUrl: './user-edit.component.css'
+  styleUrl: './user-edit.component.css',
 })
 export class UserEditComponent {
   id = null;
@@ -20,7 +20,7 @@ export class UserEditComponent {
     });
   }
   getData() {
-    this.service.api(`users/${this.id}`, 'get').subscribe((res: any) => {
+    this.service.api(`user/getUser/${this.id}`, 'get').subscribe((res: any) => {
       this.item = res.data;
     });
   }
@@ -28,10 +28,10 @@ export class UserEditComponent {
   save() {
     this.loading = true;
     this.errors = null;
-    this.service.api(`users/${this.id}`, 'put', this.item).subscribe(
+    this.service.api(`user/updateUser/${this.id}`, 'put', this.item).subscribe(
       (res: any) => {
         this.loading = false;
-        this.service.toast('success', 'Usuario Actualizado');
+        this.service.toast('success', 'Administrador Actualizado');
         this.service.goPage('user/edit/' + res.data.id);
       },
       (err: any) => {
@@ -44,9 +44,9 @@ export class UserEditComponent {
   }
 
   delete() {
-    this.service.api(`users/${this.id}`, 'delete').subscribe(
+    this.service.api(`user/deleteUser/${this.id}`, 'delete').subscribe(
       (res: any) => {
-        this.service.toast('success', 'Usuario Eliminado');
+        this.service.toast('success', 'Administrador Eliminado');
         this.service.goPage('user');
       },
       (err: any) => {

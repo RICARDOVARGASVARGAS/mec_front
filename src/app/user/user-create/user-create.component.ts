@@ -17,9 +17,9 @@ export class UserCreateComponent {
     this.loading = true;
     this.errors = null;
     this.item.company_id = this.service.user.company_id;
+    this.item.status = 'active';
     this.service.api('user/registerUser', 'post', this.item).subscribe(
       (res: any) => {
-        console.log(res);
         this.loading = false;
         this.service.toast('success', 'Administrador Registrado');
         this.service.goPage('user/edit/' + res.data.id);
