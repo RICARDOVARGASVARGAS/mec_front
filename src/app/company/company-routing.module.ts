@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CompanyEditComponent } from './company-edit/company-edit.component';
+import { checkGuard } from '../guards/check.guard';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'edit',
     component: CompanyEditComponent,
+    canActivate: [checkGuard],
+    data: {
+      access: ['company.edit'],
+    },
   },
 ];
 

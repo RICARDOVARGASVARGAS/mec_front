@@ -1,0 +1,27 @@
+<app-title>ADMINISTRADOR: {{ item.name }} {{ item.last_name }}</app-title>
+
+<div class="flex my-2 ml-1">
+  <button (click)="updatePermissions()" class="btn-save">
+    <i class="fa-solid fa-key"></i>
+  </button>
+
+  <a (click)="service.goPage('user/index')" class="btn-list">
+    <i class="fa-solid fa-table"></i>
+  </a>
+
+  <a (click)="service.goPage('user/edit/' + item.id)" class="btn-list">
+    <i class="fa-solid fa-pen-to-square"></i>
+  </a>
+</div>
+@if (node) {
+<nz-tree
+  [nzData]="node"
+  nzCheckable
+  [nzCheckedKeys]="defaultCheckedKeys"
+  [nzExpandedKeys]="defaultExpandedKeys"
+  [nzSelectedKeys]="defaultSelectedKeys"
+  (nzClick)="nzEvent($event)"
+  (nzExpandChange)="nzEvent($event)"
+  (nzCheckBoxChange)="nzEvent($event)"
+></nz-tree>
+}

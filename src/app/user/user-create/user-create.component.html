@@ -1,0 +1,97 @@
+@if (loading) {
+<app-load>Cargando ...</app-load>
+}
+
+<app-title>Registrar Administrador</app-title>
+
+<form>
+  <div class="px-2 py-3">
+    <div class="grid gap-2 mb-6 md:grid-cols-2">
+      <div>
+        <label class="label-form">Nombres</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="names"
+            [(ngModel)]="item.names"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.names }}</span>
+        }
+      </div>
+
+      <div>
+        <label class="label-form">Apellidos</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="surnames"
+            [(ngModel)]="item.surnames"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.surnames }}</span>
+        }
+      </div>
+
+      <div>
+        <label class="label-form">Correo Electrónico</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="email"
+            [(ngModel)]="item.email"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.email }}</span>
+        }
+      </div>
+
+      <div>
+        <label class="label-form">Teléfono</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="phone"
+            [(ngModel)]="item.phone"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.phone }}</span>
+        }
+      </div>
+    </div>
+
+    <div class="flex">
+      <button (click)="save()" class="btn-save">
+        <i class="fa-solid fa-floppy-disk"></i>
+      </button>
+
+      <a (click)="service.goPage('user')" class="btn-list">
+        <i class="fa-solid fa-table"></i>
+      </a>
+    </div>
+  </div>
+</form>

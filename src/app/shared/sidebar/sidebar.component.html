@@ -14,7 +14,20 @@
           <i class="fa-solid fa-users text-xl ml-1"></i>
           <span
             class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-            >Empresa</span
+            >Mecánica</span
+          >
+        </a>
+      </li>
+      <li *setPermission="['user.index']">
+        <a
+          onclick="return false;"
+          (click)="goPage('user/index')"
+          class="menu-a"
+        >
+          <i class="fa-solid fa-users text-xl ml-1"></i>
+          <span
+            class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
+            >Administradores</span
           >
         </a>
       </li>

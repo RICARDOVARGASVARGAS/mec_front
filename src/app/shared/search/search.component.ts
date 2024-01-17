@@ -29,7 +29,7 @@ export class SearchComponent {
       name: '20',
     },
     {
-      value: 'all',
+      value: null,
       name: '♾️',
     },
   ];

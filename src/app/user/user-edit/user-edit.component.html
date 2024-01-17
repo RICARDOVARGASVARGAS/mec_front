@@ -1,0 +1,146 @@
+@if (loading) {
+    <app-load>Cargando ...</app-load>
+    }
+    
+    <app-title>Actualizar Administrador</app-title>
+    
+    <form>
+      <div class="px-2 py-3">
+        <div class="grid gap-2 mb-6 md:grid-cols-2">
+          <div>
+            <label class="label-form">Nombres</label>
+            <div class="relative">
+              <div class="input-icon">
+                <i class="fa-solid fa-signature text-gray-500"></i>
+              </div>
+              <input
+                name="name"
+                [(ngModel)]="item.name"
+                type="text"
+                autocomplete="off"
+                class="input"
+              />
+            </div>
+            @if (errors) {
+            <span class="error">{{ errors.name }}</span>
+            }
+          </div>
+    
+          <div>
+            <label class="label-form">Apellidos</label>
+            <div class="relative">
+              <div class="input-icon">
+                <i class="fa-solid fa-signature text-gray-500"></i>
+              </div>
+              <input
+                name="last_name"
+                [(ngModel)]="item.last_name"
+                type="text"
+                autocomplete="off"
+                class="input"
+              />
+            </div>
+            @if (errors) {
+            <span class="error">{{ errors.last_name }}</span>
+            }
+          </div>
+    
+          <div>
+            <label class="label-form">Documento</label>
+            <div class="relative">
+              <div class="input-icon">
+                <i class="fa-solid fa-signature text-gray-500"></i>
+              </div>
+              <input
+                name="document"
+                [(ngModel)]="item.document"
+                type="text"
+                autocomplete="off"
+                class="input"
+              />
+            </div>
+            @if (errors) {
+            <span class="error">{{ errors.document }}</span>
+            }
+          </div>
+    
+          <div>
+            <label class="label-form">Correo Electrónico</label>
+            <div class="relative">
+              <div class="input-icon">
+                <i class="fa-solid fa-signature text-gray-500"></i>
+              </div>
+              <input
+                name="email"
+                [(ngModel)]="item.email"
+                type="text"
+                autocomplete="off"
+                class="input"
+              />
+            </div>
+            @if (errors) {
+            <span class="error">{{ errors.email }}</span>
+            }
+          </div>
+    
+          <div>
+            <label class="label-form">Estado</label>
+            <div class="relative">
+              <div class="input-icon">
+                <i class="fa-solid fa-signature text-gray-500"></i>
+              </div>
+              <select class="input" [(ngModel)]="item.status" name="item.status">
+                <option value="active">ACTIVO</option>
+                <option value="inactive">INACTIVO</option>
+              </select>
+            </div>
+            @if (errors) {
+            <span class="error">{{ errors.status }}</span>
+            }
+          </div>
+        </div>
+    
+        <div class="flex">
+          <button (click)="save()" class="btn-save">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </button>
+    
+          <a
+            nz-popconfirm
+            [nzPopconfirmTitle]="
+              'Eliminar Usuario: ' + item.name + ' ' + item.last_name
+            "
+            nzPopconfirmPlacement="top"
+            nzOkText="ELIMINAR"
+            nzCancelText="CANCELAR"
+            (nzOnConfirm)="delete()"
+            (nzOnCancel)="('')"
+            class="btn-delete"
+          >
+            <i class="fa-solid fa-trash"></i>
+          </a>
+    
+          <a (click)="service.goPage('user')" class="btn-list">
+            <i class="fa-solid fa-table"></i>
+          </a>
+    
+          <a (click)="service.goPage('user/permission/' + item.id)" class="btn-list">
+            <i class="fa-solid fa-key"></i>
+          </a>
+    
+          <app-file
+            [id]="id"
+            model="User"
+            storage="users"
+            (message)="getData()"
+          ></app-file>
+        </div>
+      </div>
+    </form>
+    
+    @if (item.storage) {
+    <div class="w-full flex items-center justify-center">
+      <img class="rounded-md h-auto" [src]="service.apiUrl + item.storage" alt="" />
+    </div>
+    }
+    
