@@ -16,6 +16,7 @@ export class CompanyEditComponent {
   }
 
   getItem() {
+    this.loading = true;
     this.service
       .api(`company/getCompany/${this.service.user.company_id}`, 'get')
       .subscribe((res: any) => {
@@ -24,6 +25,7 @@ export class CompanyEditComponent {
         const user = JSON.parse(localStorage.getItem('user') ?? '');
         user.company = this.item;
         localStorage.setItem('user', JSON.stringify(user));
+        this.loading = false;
       });
   }
 

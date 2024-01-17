@@ -23,6 +23,15 @@ export class UserEditComponent {
     this.service.api(`user/getUser/${this.id}`, 'get').subscribe((res: any) => {
       this.item = res.data;
       console.log(this.item);
+      if (this.service.user.id == this.id) {
+        const user:any = JSON.parse(localStorage.getItem('user') ?? '');
+        user.names = this.item.names;
+        user.surnames = this.item.surnames;
+        user.email = this.item.email;
+        user.image = this.item.image;
+        user.storage = this.item.storage;
+        localStorage.setItem('user', JSON.stringify(user));
+      }
     });
   }
 
