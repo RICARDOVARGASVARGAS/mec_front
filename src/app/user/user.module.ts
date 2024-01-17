@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzTreeModule } from 'ng-zorro-antd/tree';
+import { ImageModule } from 'primeng/image';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NzTreeModule } from 'ng-zorro-antd/tree';
     FormsModule,
     NzPopconfirmModule,
     NzTreeModule,
+    ImageModule,
   ],
 })
 export class UserModule {}

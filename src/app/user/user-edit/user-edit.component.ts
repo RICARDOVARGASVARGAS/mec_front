@@ -22,6 +22,7 @@ export class UserEditComponent {
   getData() {
     this.service.api(`user/getUser/${this.id}`, 'get').subscribe((res: any) => {
       this.item = res.data;
+      console.log(this.item);
     });
   }
 

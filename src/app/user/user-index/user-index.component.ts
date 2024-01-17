@@ -64,7 +64,7 @@ export class UserIndexComponent {
   }
 
   resetPassword(id: any) {
-    this.service.api(`users/${id}/resetPassword`, 'post').subscribe(
+    this.service.api(`user/resetPassword/${id}`, 'post').subscribe(
       (res: any) => {
         this.service.toast('success', res.message);
       },
