@@ -5,6 +5,7 @@ import { UserCreateComponent } from './user-create/user-create.component';
 import { checkGuard } from '../guards/check.guard';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { UserPermissionComponent } from './user-permission/user-permission.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,14 @@ const routes: Routes = [
     canActivate: [checkGuard],
     data: {
       access: ['user.permission'],
+    },
+  },
+  {
+    path: 'profile',
+    component: UserProfileComponent,
+    canActivate: [checkGuard],
+    data: {
+      access: ['user.profile'],
     },
   },
 ];
