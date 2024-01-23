@@ -45,6 +45,11 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'box',
+    loadChildren: () => import('./box/box.module').then((m) => m.BoxModule),
+    canActivate: [authGuard],
+  },
+  {
     path: 'welcome',
     component: WelcomeComponent,
     canActivate: [authGuard],
