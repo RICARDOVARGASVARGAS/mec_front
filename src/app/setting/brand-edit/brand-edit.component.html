@@ -1,1 +1,58 @@
-<p>brand-edit works!</p>
+@if (loading) {
+<app-load>Cargando ...</app-load>
+}
+
+<app-title>Actualizar Marca</app-title>
+
+<form>
+  <div class="px-2 py-3">
+    <div class="grid gap-2 mb-6 md:grid-cols-2">
+      <div>
+        <label class="label-form">Marca</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="name"
+            [(ngModel)]="item.name"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.name }}</span>
+        }
+      </div>
+    </div>
+
+    <div class="flex">
+      <button (click)="save()" class="btn-save">
+        <i class="fa-solid fa-pen-to-square"></i>
+      </button>
+
+      <a
+        *setPermission="['brand.destroy']"
+        nz-popconfirm
+        [nzPopconfirmTitle]="'Eliminar Marca: ' + item.name"
+        nzPopconfirmPlacement="top"
+        nzOkText="ELIMINAR"
+        nzCancelText="CANCELAR"
+        (nzOnConfirm)="delete()"
+        (nzOnCancel)="('')"
+        class="btn-delete"
+      >
+        <i class="fa-solid fa-trash"></i>
+      </a>
+
+      <a
+        *setPermission="['brand.index']"
+        (click)="service.goPage('setting/brand/index')"
+        class="btn-list"
+      >
+        <i class="fa-solid fa-table"></i>
+      </a>
+    </div>
+  </div>
+</form>
