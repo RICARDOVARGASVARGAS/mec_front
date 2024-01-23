@@ -32,40 +32,7 @@
         </a>
       </li>
 
-      <li
-        *setPermission="[
-          'country.index',
-          'department.index',
-          'province.index',
-          'district.index',
-          'academicLevel.index',
-          'civilStatus.index',
-          'disability.index',
-          'healthPlan.index',
-          'relation.index',
-          'sex.index',
-          'typeContact.index',
-          'typeDocument.index',
-          'typeUse.index',
-          'typeStreet.index',
-          'typeRoom.index',
-          'floor.index',
-          'coin.index',
-          'day.index',
-          'element.index',
-          'equipment.index',
-          'measure.index',
-          'position.index',
-          'rentPayment.index',
-          'rentType.index',
-          'status.index',
-          'statusCompany.index',
-          'suit.index',
-          'turn.index',
-          'typeCompany.index',
-          'need.index'
-        ]"
-      >
+      <li *setPermission="['year.index']">
         <button
           type="button"
           class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
@@ -79,346 +46,57 @@
           >
           <i class="fa-solid fa-chevron-down font-bold text-gray-900"></i>
         </button>
-        <ul id="dropdown-setting" class="hidden py-2 space-y-2">
+        <ul id="dropdown-setting" class="hidden py-2 space-y-2 ml-2">
           <span class="flex-1 ml-4 text-left"> General </span>
-          <li *setPermission="['country.index']">
+          <li *setPermission="['brand.index']">
             <a
               onclick="return false;"
-              (click)="goPage('settings/country/index')"
+              (click)="goPage('setting/brand/index')"
               class="menu-a"
             >
               <i class="fa-solid fa-gear"></i>
               <span
                 class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Países</span
+                >Marca</span
               >
             </a>
           </li>
-          <span class="flex-1 ml-4 text-left"> Módulo Persona </span>
-          <li *setPermission="['department.index']">
+          <li *setPermission="['color.index']">
             <a
               onclick="return false;"
-              (click)="goPage('settings/academicLevel/index')"
+              (click)="goPage('setting/color/index')"
               class="menu-a"
             >
-              <i class="fa-solid fa-user-gear"></i>
+              <i class="fa-solid fa-gear"></i>
               <span
                 class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Grados de Instrucción</span
+                >Color</span
               >
             </a>
           </li>
-          <li *setPermission="['civilStatus.index']">
+          <li *setPermission="['example.index']">
             <a
               onclick="return false;"
-              (click)="goPage('settings/civilStatus/index')"
+              (click)="goPage('setting/example/index')"
               class="menu-a"
             >
-              <i class="fa-solid fa-user-gear"></i>
+              <i class="fa-solid fa-gear"></i>
               <span
                 class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Estados Civiles</span
+                >Modelo</span
               >
             </a>
           </li>
-          <li *setPermission="['disability.index']">
+          <li *setPermission="['year.index']">
             <a
               onclick="return false;"
-              (click)="goPage('settings/disability/index')"
+              (click)="goPage('setting/year/index')"
               class="menu-a"
             >
-              <i class="fa-solid fa-user-gear"></i>
+              <i class="fa-solid fa-gear"></i>
               <span
                 class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Discapacidades</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['healthPlan.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/healthPlan/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-user-gear"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Seguros de Salud</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['relation.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/relation/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-user-gear"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Parentescos</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['sex.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/sex/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-user-gear"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Géneros</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['typeContact.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/typeContact/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-user-gear"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Tipo de Contactos</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['typeDocument.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/typeDocument/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-user-gear"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Tipo de Documentos</span
-              >
-            </a>
-          </li>
-          <span class="flex-1 ml-4 text-left"> Módulo Predio </span>
-          <li *setPermission="['typeUse.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/typeUse/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-hammer"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Tipo de Usos</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['typeStreet.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/typeStreet/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-hammer"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Tipo de Calles</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['typeRoom.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/typeRoom/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-hammer"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Tipo de Habitaciones</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['floor.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/floor/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-hammer"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Pisos</span
-              >
-            </a>
-          </li>
-          <span class="flex-1 ml-4 text-left"> Módulo Negocio </span>
-          <li *setPermission="['coin.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/coin/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-toolbox"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Monedas</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['day.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/day/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-toolbox"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Días</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['element.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/element/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-toolbox"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Rubros</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['equipment.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/equipment/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-toolbox"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Equipos</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['measure.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/measure/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-toolbox"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Unidades de Medida</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['position.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/position/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-toolbox"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Cargos</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['rentPayment.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/rentPayment/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-toolbox"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Pagos de Renta</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['status.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/status/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-toolbox"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Estados</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['statusCompany.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/statusCompany/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-toolbox"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Estados de los Negocios</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['suit.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/suit/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-toolbox"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Indumentarias</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['turn.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/turn/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-toolbox"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Turnos</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['typeCompany.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/typeCompany/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-toolbox"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Tipos de Negocios</span
-              >
-            </a>
-          </li>
-          <li *setPermission="['need.index']">
-            <a
-              onclick="return false;"
-              (click)="goPage('settings/need/index')"
-              class="menu-a"
-            >
-              <i class="fa-solid fa-toolbox"></i>
-              <span
-                class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
-                >Necesidades</span
+                >Año</span
               >
             </a>
           </li>

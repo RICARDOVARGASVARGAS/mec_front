@@ -23,8 +23,13 @@ export const routes: Routes = [
   },
   {
     path: 'user',
+    loadChildren: () => import('./user/user.module').then((m) => m.UserModule),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'setting',
     loadChildren: () =>
-      import('./user/user.module').then((m) => m.UserModule),
+      import('./setting/setting.module').then((m) => m.SettingModule),
     canActivate: [authGuard],
   },
   {
