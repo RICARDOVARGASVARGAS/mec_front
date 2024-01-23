@@ -16,7 +16,6 @@ import { ColorEditComponent } from './color-edit/color-edit.component';
 import { ExampleEditComponent } from './example-edit/example-edit.component';
 import { FormsModule } from '@angular/forms';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
-import { NzTreeModule } from 'ng-zorro-antd/tree';
 import { ImageModule } from 'primeng/image';
 import { DirectivesModule } from '../directives/directives.module';
 import { SharedModule } from '../shared/shared.module';
@@ -42,7 +41,6 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     FormsModule,
     NzPopconfirmModule,
-    NzTreeModule,
     ImageModule,
     DirectivesModule,
   ],

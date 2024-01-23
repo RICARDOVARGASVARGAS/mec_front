@@ -2,12 +2,12 @@
 <app-load></app-load>
 }
 
-<app-title>Lista Administradores</app-title>
+<app-title>Lista de Productos</app-title>
 
 <app-search (data)="getData($event)">
   <a
-    *setPermission="['user.create']"
-    (click)="service.goPage('user/create')"
+    *setPermission="['product.create']"
+    (click)="service.goPage('product/create')"
     class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
   >
     <i class="fa-solid fa-circle-plus"></i>
@@ -22,10 +22,10 @@
       <tr>
         <th scope="col" class="px-6 py-3">ID</th>
         <th scope="col" class="px-6 py-3">Foto</th>
-        <th scope="col" class="px-6 py-3">Nombres Completos</th>
-        <th scope="col" class="px-6 py-3">Teléfono</th>
-        <th scope="col" class="px-6 py-3">Correo</th>
-        <th scope="col" class="px-6 py-3">Estado</th>
+        <th scope="col" class="px-6 py-3">Producto</th>
+        <th scope="col" class="px-6 py-3">Boleta</th>
+        <th scope="col" class="px-6 py-3">P.Compra</th>
+        <th scope="col" class="px-6 py-3">P.Venta</th>
         <th scope="col" class="px-6 py-3">
           <span class="sr-only">Edit</span>
         </th>
@@ -50,46 +50,21 @@
           ></p-image>
         </td>
         <td class="px-6 py-4 capitalize">
-          {{ item.names }} {{ item.surnames }}
+          {{ item.name }}
         </td>
         <td class="px-6 py-4 capitalize">
-          {{ item.phone }}
+          {{ item.ticket }}
         </td>
-        <td class="px-6 py-4">{{ item.email }}</td>
-        <td class="px-6 py-4">
-          <span
-            class="{{
-              item.status == 'active' ? 'bg-green-500' : 'bg-red-500'
-            }} p-1 rounded-lg text-white "
-          >
-            {{ item.status == "active" ? "ACTIVO" : "INACTIVO" }}
-          </span>
+        <td class="px-6 py-4 capitalize">
+          {{ item.price_buy }}
+        </td>
+        <td class="px-6 py-4 capitalize">
+          {{ item.price_sell }}
         </td>
         <td class="px-6 py-4 text-right flex">
           <a
-            *setPermission="['user.permission']"
-            (click)="service.goPage('user/permission/' + item.id)"
-            class="ml-2 bg-cyan-600 text-white px-2 py-1 rounded-full"
-          >
-            <i class="fa-solid fa-fingerprint"></i>
-          </a>
-
-          <a
-            *setPermission="['user.resetPassword']"
-            class="ml-2 bg-yellow-700 text-white px-2 py-1 rounded-full"
-            nz-popconfirm
-            nzPopconfirmTitle="Restablecer Contraseña?"
-            nzPopconfirmPlacement="top"
-            nzOkText="Restablecer"
-            nzCancelText="Cancelar"
-            (nzOnConfirm)="resetPassword(item.id)"
-            (nzOnCancel)="('')"
-          >
-            <i class="fa-solid fa-key"></i>
-          </a>
-          <a
-            *setPermission="['user.edit']"
-            (click)="service.goPage('user/edit/' + item.id)"
+            *setPermission="['product.edit']"
+            (click)="service.goPage('product/edit/' + item.id)"
             class="ml-2 bg-blue-700 text-white px-2 py-1 rounded-full"
           >
             <i class="fa-solid fa-marker"></i>

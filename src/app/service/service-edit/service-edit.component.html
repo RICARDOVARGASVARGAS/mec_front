@@ -1,0 +1,94 @@
+@if (loading) {
+<app-load>Cargando ...</app-load>
+}
+
+<app-title>Actualizar Servicio</app-title>
+
+<form>
+  <div class="px-2 py-3">
+    <div class="grid gap-2 mb-6 md:grid-cols-2">
+      <div>
+        <label class="label-form">Servicio</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="name"
+            [(ngModel)]="item.name"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.name }}</span>
+        }
+      </div>
+
+      <div>
+        <label class="label-form">Boleta</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="ticket"
+            [(ngModel)]="item.ticket"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.ticket }}</span>
+        }
+      </div>
+    </div>
+
+    <div class="flex">
+      <button (click)="save()" class="btn-save">
+        <i class="fa-solid fa-pen-to-square"></i>
+      </button>
+
+      <a
+        *setPermission="['service.destroy']"
+        nz-popconfirm
+        [nzPopconfirmTitle]="'Eliminar el Servicio: ' + item.name"
+        nzPopconfirmPlacement="top"
+        nzOkText="ELIMINAR"
+        nzCancelText="CANCELAR"
+        (nzOnConfirm)="delete()"
+        (nzOnCancel)="('')"
+        class="btn-delete"
+      >
+        <i class="fa-solid fa-trash"></i>
+      </a>
+
+      <a
+        *setPermission="['service.index']"
+        (click)="service.goPage('service/index')"
+        class="btn-list"
+      >
+        <i class="fa-solid fa-table"></i>
+      </a>
+
+      <app-file
+        [id]="id"
+        model="Service"
+        storage="services"
+        (message)="getData()"
+      ></app-file>
+    </div>
+  </div>
+</form>
+
+@if (item.storage) {
+<div class="w-full flex items-center justify-center">
+  <img
+    class="rounded-md h-44 md:h-72"
+    [src]="service.apiUrl + '/' + item.storage"
+    alt=""
+  />
+</div>
+}

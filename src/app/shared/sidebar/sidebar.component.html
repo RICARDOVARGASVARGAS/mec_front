@@ -5,6 +5,32 @@
 >
   <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
     <ul class="space-y-2">
+      <li *setPermission="['product.index']">
+        <a
+          onclick="return false;"
+          (click)="goPage('product/index')"
+          class="menu-a"
+        >
+          <i class="fa-solid fa-users text-xl ml-1"></i>
+          <span
+            class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
+            >Productos</span
+          >
+        </a>
+      </li>
+      <li *setPermission="['service.index']">
+        <a
+          onclick="return false;"
+          (click)="goPage('service/index')"
+          class="menu-a"
+        >
+          <i class="fa-solid fa-users text-xl ml-1"></i>
+          <span
+            class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
+            >Servicios</span
+          >
+        </a>
+      </li>
       <li *setPermission="['company.edit']">
         <a
           onclick="return false;"

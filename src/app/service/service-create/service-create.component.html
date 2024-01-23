@@ -1,0 +1,59 @@
+@if (loading) {
+<app-load>Cargando ...</app-load>
+}
+
+<app-title>Registrar Servicio</app-title>
+
+<form>
+  <div class="px-2 py-3">
+    <div class="grid gap-2 mb-6 md:grid-cols-2">
+      <div>
+        <label class="label-form">Servicio</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="name"
+            [(ngModel)]="item.name"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.name }}</span>
+        }
+      </div>
+
+      <div>
+        <label class="label-form">Boleta</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="ticket"
+            [(ngModel)]="item.ticket"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.ticket }}</span>
+        }
+      </div>
+    </div>
+
+    <div class="flex">
+      <button (click)="save()" class="btn-save">
+        <i class="fa-solid fa-floppy-disk"></i>
+      </button>
+
+      <a (click)="service.goPage('service/index')" class="btn-list">
+        <i class="fa-solid fa-table"></i>
+      </a>
+    </div>
+  </div>
+</form>
