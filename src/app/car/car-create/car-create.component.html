@@ -1,0 +1,182 @@
+@if (loading) {
+<app-load>Cargando ...</app-load>
+}
+
+<app-title>Registrar Vehículo</app-title>
+
+<form>
+  <div class="px-2 py-3">
+    <div class="grid gap-2 mb-6 md:grid-cols-2">
+      <div>
+        <label class="label-form">Placa</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-id-card-clip text-gray-500"></i>
+          </div>
+          <input
+            name="plate"
+            [(ngModel)]="item.plate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.plate }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">N° Motor</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="engine"
+            [(ngModel)]="item.engine"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.engine }}</span>
+      </div>
+
+      <div>
+        <label class="label-form"
+          >N° Chasis <i class="fa-brands fa-medapps text-red-600 font-bold"></i
+        ></label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="chassis"
+            [(ngModel)]="item.chassis"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.chassis }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">Modelo</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <select
+            class="input"
+            [(ngModel)]="item.example_id"
+            name="item.example_id"
+          >
+            <option
+              value="{{ example.id }}"
+              *ngFor="let example of data.examples"
+            >
+              {{ example.name }}
+            </option>
+          </select>
+        </div>
+
+        <span class="error" *ngIf="errors">{{ errors.example_id }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">Color</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <select
+            class="input"
+            [(ngModel)]="item.color_id"
+            name="item.color_id"
+          >
+            <option value="{{ color.id }}" *ngFor="let color of data.colors">
+              {{ color.name }}
+            </option>
+          </select>
+        </div>
+
+        <span class="error" *ngIf="errors">{{ errors.color_id }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">Marca</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <select
+            class="input"
+            [(ngModel)]="item.brand_id"
+            name="item.brand_id"
+          >
+            <option value="{{ brand.id }}" *ngFor="let brand of data.brands">
+              {{ brand.name }}
+            </option>
+          </select>
+        </div>
+
+        <span class="error" *ngIf="errors">{{ errors.brand_id }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">Año</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <select class="input" [(ngModel)]="item.year_id" name="item.year_id">
+            <option value="{{ year.id }}" *ngFor="let year of data.years">
+              {{ year.name }}
+            </option>
+          </select>
+        </div>
+
+        <span class="error" *ngIf="errors">{{ errors.year_id }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">Propietario</label>
+        <nz-select
+          class="w-full p-1 bg-gray-200 rounded-lg border-gray-300 border"
+          name="item.client_id"
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Selecciona un Propietario"
+          [(ngModel)]="item.client_id"
+        >
+          <nz-option
+            *ngFor="let client of data.clients"
+            [nzLabel]="
+              client.document +
+              ' - ' +
+              client.name +
+              ' ' +
+              client.surname +
+              ' ' +
+              client.last_name
+            "
+            [nzValue]="client.id"
+            nzValue="jack"
+          ></nz-option>
+        </nz-select>
+
+        <span class="error" *ngIf="errors">{{ errors.client_id }}</span>
+      </div>
+    </div>
+
+    <div class="flex">
+      <button (click)="save()" class="btn-save">
+        <i class="fa-solid fa-floppy-disk"></i>
+      </button>
+
+      <a (click)="service.goPage('service/index')" class="btn-list">
+        <i class="fa-solid fa-table"></i>
+      </a>
+    </div>
+  </div>
+</form>

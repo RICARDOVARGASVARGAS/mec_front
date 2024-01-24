@@ -27,6 +27,15 @@
           >
         </a>
       </li>
+      <li *setPermission="['car.index']">
+        <a onclick="return false;" (click)="goPage('car/index')" class="menu-a">
+          <i class="fa-solid fa-users text-xl ml-1"></i>
+          <span
+            class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
+            >Vehículos</span
+          >
+        </a>
+      </li>
       <li *setPermission="['product.index']">
         <a
           onclick="return false;"
