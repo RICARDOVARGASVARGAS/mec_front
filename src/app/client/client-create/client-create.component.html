@@ -1,0 +1,159 @@
+@if (loading) {
+<app-load>Cargando ...</app-load>
+}
+
+<app-title>Registrar Cliente</app-title>
+
+<form>
+  <div class="px-2 py-3">
+    <div class="grid gap-2 mb-6 md:grid-cols-2">
+      <div>
+        <button
+          (click)="generateRandomDocument()"
+          class="hover:bg-blue-500 hover:cursor-pointer rounded-md hover:p-2"
+        >
+          <span class="label-form">Documento</span>
+        </button>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="document"
+            [(ngModel)]="item.document"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.document }}</span>
+        }
+      </div>
+
+      <div>
+        <label class="label-form">Nombre</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="name"
+            [(ngModel)]="item.name"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.name }}</span>
+        }
+      </div>
+
+      <div>
+        <label class="label-form">Apellido Paterno</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="surname"
+            [(ngModel)]="item.surname"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.surname }}</span>
+        }
+      </div>
+
+      <div>
+        <label class="label-form">Apellido Materno</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="last_name"
+            [(ngModel)]="item.last_name"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.last_name }}</span>
+        }
+      </div>
+
+      <div>
+        <label class="label-form">Teléfono</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="phone"
+            [(ngModel)]="item.phone"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.phone }}</span>
+        }
+      </div>
+
+      <div>
+        <label class="label-form">Correo Electrónico</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="email"
+            [(ngModel)]="item.email"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.email }}</span>
+        }
+      </div>
+
+      <div>
+        <label class="label-form">Dirección</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="address"
+            [(ngModel)]="item.address"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.address }}</span>
+        }
+      </div>
+    </div>
+
+    <div class="flex">
+      <button (click)="save()" class="btn-save">
+        <i class="fa-solid fa-floppy-disk"></i>
+      </button>
+
+      <a (click)="service.goPage('client/index')" class="btn-list">
+        <i class="fa-solid fa-table"></i>
+      </a>
+    </div>
+  </div>
+</form>
