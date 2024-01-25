@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 
 @Component({
-  selector: 'app-car-index',
-  templateUrl: './car-index.component.html',
-  styleUrl: './car-index.component.css',
+  selector: 'app-sale-index',
+  templateUrl: './sale-index.component.html',
+  styleUrl: './sale-index.component.css',
 })
-export class CarIndexComponent {
+export class SaleIndexComponent {
   per_page = null;
   search = '';
   loading = false;
@@ -25,11 +25,15 @@ export class CarIndexComponent {
   list() {
     this.loading = true;
     this.service
-      .api(`mec/getCars?included=client,brand,color,year,example`, 'post', {
-        company_id: this.service.user.company_id,
-        search: this.search,
-        per_page: this.per_page,
-      })
+      .api(
+        `sale/getSales?included=client,car.client,car.brand,car.color,car.year,car.example`,
+        'post',
+        {
+          company_id: this.service.user.company_id,
+          search: this.search,
+          per_page: this.per_page,
+        }
+      )
       .subscribe(
         (res: any) => {
           this.loading = false;

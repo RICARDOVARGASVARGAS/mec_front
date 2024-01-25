@@ -5,6 +5,19 @@
 >
   <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
     <ul class="space-y-2">
+      <li *setPermission="['sale.index']">
+        <a
+          onclick="return false;"
+          (click)="goPage('sale/index')"
+          class="menu-a"
+        >
+          <i class="fa-solid fa-users text-xl ml-1"></i>
+          <span
+            class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
+            >Ventas</span
+          >
+        </a>
+      </li>
       <li *setPermission="['box.index']">
         <a onclick="return false;" (click)="goPage('box/index')" class="menu-a">
           <i class="fa-solid fa-users text-xl ml-1"></i>

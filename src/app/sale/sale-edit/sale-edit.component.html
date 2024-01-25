@@ -1,0 +1,207 @@
+@if (loading) {
+<app-load>Cargando ...</app-load>
+}
+
+<app-title>Actualizar Venta</app-title>
+
+<form>
+  <div class="px-2 py-3">
+    <div class="grid gap-2 mb-6 md:grid-cols-2">
+      <div>
+        <label class="label-form"
+          >KM <i class="fa-brands fa-medapps text-red-600 font-bold"></i
+        ></label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-id-card-clip text-gray-500"></i>
+          </div>
+          <input
+            name="km"
+            [(ngModel)]="item.km"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.km }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">Estado Venta</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <select class="input" [(ngModel)]="item.status" name="item.status">
+            <option value="pending">PENDIENTE</option>
+            <option value="done">PAGADO</option>
+            <option value="debt">DEUDA</option>
+            <option value="cancelled">CANCELADO</option>
+          </select>
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.status }}</span>
+      </div>
+
+      <div>
+        <label class="label-form"
+          >Fecha Ingreso
+          <i class="fa-brands fa-medapps text-red-600 font-bold"></i
+        ></label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="entry_date"
+            [(ngModel)]="item.entry_date"
+            type="date"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.entry_date }}</span>
+      </div>
+
+      <div>
+        <label class="label-form"
+          >Fecha Salida
+          <i class="fa-brands fa-medapps text-red-600 font-bold"></i
+        ></label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="exit_date"
+            [(ngModel)]="item.exit_date"
+            type="date"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.exit_date }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">Vehículo</label>
+        <nz-select
+          class="w-full p-1 bg-gray-200 rounded-lg border-gray-300 border"
+          name="item.car_id"
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Selecciona un Vehículo"
+          [(ngModel)]="item.car_id"
+        >
+          <nz-option
+            *ngFor="let car of data.cars"
+            [nzLabel]="
+              car.plate +
+              ' - ' +
+              car.example.name +
+              ' - ' +
+              car.color.name +
+              ' - ' +
+              car.year.name +
+              ' / ' +
+              car.client.document +
+              ' - ' +
+              car.client.name +
+              ' ' +
+              car.client.surname +
+              ' ' +
+              car.client.last_name
+            "
+            [nzValue]="car.id"
+            nzValue="jack"
+          ></nz-option>
+        </nz-select>
+
+        <span class="error" *ngIf="errors">{{ errors.car_id }}</span>
+      </div>
+
+      <div>
+        <label class="label-form"
+          >Conductor <i class="fa-brands fa-medapps text-red-600 font-bold"></i>
+        </label>
+        <nz-select
+          class="w-full p-1 bg-gray-200 rounded-lg border-gray-300 border"
+          name="item.client_id"
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Selecciona un Conductor"
+          [(ngModel)]="item.client_id"
+        >
+          <nz-option
+            [nzLabel]="'Ninguno'"
+            [nzValue]="null"
+            nzValue="jack"
+          ></nz-option>
+          <nz-option
+            *ngFor="let client of data.clients"
+            [nzLabel]="
+              client.document +
+              ' - ' +
+              client.name +
+              ' ' +
+              client.surname +
+              ' ' +
+              client.last_name
+            "
+            [nzValue]="client.id"
+            nzValue="jack"
+          ></nz-option>
+        </nz-select>
+
+        <span class="error" *ngIf="errors">{{ errors.client_id }}</span>
+      </div>
+
+      <div>
+        <label class="label-form"
+          >Descuento <i class="fa-brands fa-medapps text-red-600 font-bold"></i
+        ></label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="discount"
+            [(ngModel)]="item.discount"
+            type="number"
+            step="any"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.discount }}</span>
+      </div>
+    </div>
+
+    <div class="flex">
+      <button (click)="save()" class="btn-save">
+        <i class="fa-solid fa-pen-to-square"></i>
+      </button>
+
+      <a
+        *setPermission="['sale.destroy']"
+        nz-popconfirm
+        [nzPopconfirmTitle]="'Eliminar Venta'"
+        nzPopconfirmPlacement="top"
+        nzOkText="ELIMINAR"
+        nzCancelText="CANCELAR"
+        (nzOnConfirm)="delete()"
+        (nzOnCancel)="('')"
+        class="btn-delete"
+      >
+        <i class="fa-solid fa-trash"></i>
+      </a>
+
+      <a
+        *setPermission="['sale.index']"
+        (click)="service.goPage('sale/index')"
+        class="btn-list"
+      >
+        <i class="fa-solid fa-table"></i>
+      </a>
+    </div>
+  </div>
+</form>

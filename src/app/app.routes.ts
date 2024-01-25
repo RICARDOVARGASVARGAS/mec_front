@@ -61,6 +61,11 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'sale',
+    loadChildren: () => import('./sale/sale.module').then((m) => m.SaleModule),
+    canActivate: [authGuard],
+  },
+  {
     path: 'welcome',
     component: WelcomeComponent,
     canActivate: [authGuard],
