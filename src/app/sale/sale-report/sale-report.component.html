@@ -1,0 +1,258 @@
+@if (loading) {
+<app-load> Cargando Reporte ... </app-load>
+} @if (detail){
+<div class="p-1">
+  <!-- Cabecera -->
+  <div class="grid grid-cols-3 p-2">
+    <div class="text-left">
+      <img
+        [src]="
+          service.user.storage
+            ? service.apiUrl + '/' + service.user.storage
+            : 'assets/img/logo.png'
+        "
+        class="h-12 rounded-md"
+      />
+    </div>
+    <div class="col-span-1"></div>
+    <div class="text-right">
+      <span class="font-bold text-xl">ORDEN DE REPARACIÓN</span> <br />
+      <span class="font-bold text-xl text-red-700"
+        >N° {{ ("000000" + detail.sale.id).slice(-6) }}</span
+      >
+    </div>
+  </div>
+
+  <!-- Cuentas -->
+  <div class="mb-5 flex justify-between">
+    <div class="">
+      <div class="border pl-2 border-black w-72">
+        <span class="font-bold">BANCO DE LA NACIÓN: 04-195-308603</span>
+      </div>
+      <div class="border pl-2 border-black w-72">
+        <span class="font-bold">CUENTA BCP: 20591954286001</span>
+      </div>
+      <div class="border pl-2 border-black w-72">
+        <span class="font-bold">BBVA: 0011-0814-0209695338</span>
+      </div>
+    </div>
+
+    <div class="">
+      Teléfonos: # 901-278-101 <br />
+      Jr. Santa Rosa, Barrio Salinas. <br />
+      Andahuaylas.
+    </div>
+  </div>
+
+  <!-- Datos de Empresa -->
+  <div class="grid grid-cols-2 border border-black">
+    <div class="border-style">
+      <span class="font-bold"
+        >FECHA DE INGRESO: {{ detail.sale.entry_date }}</span
+      >
+    </div>
+    <div class="border-style">
+      <span class="font-bold"
+        >FECHA DE SALIDA: {{ detail.sale.exit_date }}</span
+      >
+    </div>
+    <div class="border-style col-span-2 text-center bg-blue-200">
+      <span class="font-bold">DATOS EMPRESA/CONDUCTOR</span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        Propietario:
+        {{ detail.sale.car.client.name }}
+        {{ detail.sale.car.client.surname }}
+        {{ detail.sale.car.client.last_name }}
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        Conductor:
+        {{ detail.sale.client ? detail.sale.client.name : "" }}
+        {{ detail.sale.client ? detail.sale.client.surname : "" }}
+        {{ detail.sale.client ? detail.sale.client.last_name : "" }}
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        R.U.C:
+        {{ detail.sale.car.client.document }}
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        DNI:
+        {{ detail.sale.client ? detail.sale.client.document : "" }}
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        Teléfono:
+        {{ detail.sale.car.client.phone }}
+      </span>
+    </div>
+
+    <div class="border-style">
+      <span class="font-bold">
+        Celular:
+        {{ detail.sale.client ? detail.sale.client.phone : "" }}
+      </span>
+    </div>
+
+    <div class="border-style col-span-2">
+      <span class="font-bold">
+        Dirección:
+        {{ detail.sale.car.client.address }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Datos del Vehículo -->
+  <div class="grid grid-cols-3 border border-black">
+    <div class="border-style col-span-3 text-center bg-blue-200">
+      <span class="font-bold">DATOS DEL VEHÍCULO</span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold"> Placa: {{ detail.sale.car.plate }} </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold"> N° Motor: {{ detail.sale.car.engine }} </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold"> N° Chasis: {{ detail.sale.car.chassis }} </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold"> Marca: {{ detail.sale.car.brand.name }} </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        Modelo: {{ detail.sale.car.example.name }}
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold"> Año: {{ detail.sale.car.year.name }} </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold"> Color: {{ detail.sale.car.color.name }} </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold"> </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold"> KM: {{ detail.sale.km }} </span>
+    </div>
+  </div>
+
+  <!-- Productos -->
+  @if (detail.products.length > 0) {
+  <table class="border-style w-full mt-1">
+    <thead>
+      <tr>
+        <th class="border-style-table text-center bg-blue-200" colSpan="4">
+          PRODUCTOS
+        </th>
+      </tr>
+      <tr>
+        <th class="border-style-table">CANT</th>
+        <th class="border-style-table">DESCRIPCIÓN</th>
+        <th class="border-style-table">P.UNIT</th>
+        <th class="border-style-table">TOTAL</th>
+      </tr>
+    </thead>
+    <tbody class="font-bold">
+      @for (item of detail.products; track item.id) {
+      <tr>
+        <td class="border-style-table text-center md:w-24">
+          {{ item.pivot.quantity }}
+        </td>
+        <td class="border-style-table uppercase">
+          {{ item.ticket }}
+        </td>
+        <td class="border-style-table text-center md:w-64">
+          S/. {{ item.price_sell }}
+        </td>
+        <td class="border-style-table text-center md:w-64">
+          S/. {{ item.pivot.quantity * item.price_sell }}
+        </td>
+      </tr>
+      }
+
+      <tr class="bg-white border-b hover:bg-gray-50 text-gray-700">
+        <td class="border-style-table" colSpan="3"></td>
+        <td class="border-style-table text-center">
+          S/. {{ detail.totalProducts }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  }
+
+  <!-- SERVICIOS -->
+
+  @if (detail.services.length > 0) {
+  <table class="border-style w-full mt-1">
+    <thead>
+      <tr>
+        <th class="border-style-table text-center bg-blue-200" colSpan="2">
+          SERVICIOS
+        </th>
+      </tr>
+      <tr>
+        <th class="border-style-table">DESCRIPCIÓN</th>
+        <th class="border-style-table">TOTAL</th>
+      </tr>
+    </thead>
+    <tbody class="font-bold">
+      @for (item of detail.services; track item.id) {
+      <tr>
+        <td class="border-style-table uppercase">
+          {{ item.ticket }}
+        </td>
+        <td class="border-style-table text-center md:w-64">
+          S/. {{ item.pivot.price_service }}
+        </td>
+      </tr>
+      }
+      <tr class="bg-white border-b hover:bg-gray-50 text-gray-700">
+        <td class="border-style-table" colSpan="1"></td>
+        <td class="border-style-table text-center">
+          S/. {{ detail.totalServices }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  }
+
+  <!-- Detalle -->
+  <table class="border-style w-full mt-2">
+    <thead>
+      <tr>
+        <th class="border-style-table">SERVICIOS</th>
+        <th class="border-style-table">PAGOS</th>
+        @if (detail.sale.discount > 0) {
+        <th class="border-style-table">DESCUENTO</th>
+        } @if (detail.pending > 0) {
+        <th class="border-style-table">PENDIENTE</th>
+        }
+      </tr>
+    </thead>
+    <tbody class="font-bold">
+      <tr>
+        <td class="border-style-table text-center">S/. {{ detail.total }}</td>
+        <td class="border-style-table text-center">
+          S/. {{ detail.totalPayments }}
+        </td>
+        @if (detail.sale.discount > 0) {
+        <td class="border-style-table text-center">
+          S/. {{ detail.sale.discount }}
+        </td>
+        } @if (detail.pending > 0) {
+        <td class="border-style-table text-center">S/. {{ detail.pending }}</td>
+        }
+      </tr>
+    </tbody>
+  </table>
+</div>
+}

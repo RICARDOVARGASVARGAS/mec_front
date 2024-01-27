@@ -23,11 +23,9 @@ export class SaleDetailComponent {
 
   getData() {
     this.loading = true;
-    console.log(this.id);
     this.service.api(`sale/getSaleDetail/${this.id}`, 'get').subscribe(
       (res: any) => {
         this.detail = res;
-        console.log(res);
         this.loading = false;
       },
       (err: any) => {

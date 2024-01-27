@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { ApiService } from './services/api.service';
 import { SharedModule } from './shared/shared.module';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +17,13 @@ export class AppComponent implements OnInit {
   title = 'mec_front';
 
   user = null;
+  report = false;
 
-  constructor(private service: ApiService) {
+  constructor(private service: ApiService, private location: Location) {
     this.user = this.service.user;
+    if (this.location.path().includes('report-sale')) {
+      this.report = true;
+    }
   }
 
   ngOnInit(): void {

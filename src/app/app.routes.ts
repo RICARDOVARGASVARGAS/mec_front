@@ -3,6 +3,7 @@ import { noAuthGuard } from './guards/no-auth.guard';
 import { authGuard } from './guards/auth.guard';
 import { WelcomeComponent } from './auth/welcome/welcome.component';
 import { NotFoundComponent } from './auth/not-found/not-found.component';
+import { SaleReportComponent } from './sale/sale-report/sale-report.component';
 
 export const routes: Routes = [
   {
@@ -63,6 +64,11 @@ export const routes: Routes = [
   {
     path: 'sale',
     loadChildren: () => import('./sale/sale.module').then((m) => m.SaleModule),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'report-sale/:id',
+    component: SaleReportComponent,
     canActivate: [authGuard],
   },
   {

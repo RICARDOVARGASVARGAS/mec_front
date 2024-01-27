@@ -30,11 +30,19 @@
   </span>
   -
   <a
-    [routerLink]="['/report', detail.id]"
+    [routerLink]="['/report-sale', detail.sale.id]"
     target="_blank"
     class="ml-2 bg-sky-600 text-white px-2 py-1 rounded-full"
   >
     <i class="fa-solid fa-print"></i>
+  </a>
+  -
+  <a
+    (click)="service.goPage('sale/edit/' + detail.sale.id)"
+    target="_blank"
+    class="ml-2 bg-sky-600 text-white px-2 py-1 rounded-full"
+  >
+    <i class="fa-solid fa-marker"></i>
   </a>
 </app-title>
 

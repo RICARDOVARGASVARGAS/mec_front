@@ -88,19 +88,22 @@
         </td>
         <td class="px-6 py-4 flex justify-center items-center">
           <a
-            [routerLink]="['/report', item.id]"
+          *setPermission="['sale.print']"
+            [routerLink]="['/report-sale', item.id]"
             target="_blank"
             class="ml-2 bg-sky-600 text-white px-2 py-1 rounded-full"
           >
             <i class="fa-solid fa-print"></i>
           </a>
           <a
+          *setPermission="['sale.detail']"
             (click)="service.goPage('sale/detail/' + item.id)"
             class="ml-2 bg-green-700 text-white px-2 py-1 rounded-full"
           >
             <i class="fa-solid fa-book"></i>
           </a>
           <a
+          *setPermission="['sale.edit']"
             (click)="service.goPage('sale/edit/' + item.id)"
             class="ml-2 bg-blue-700 text-white px-2 py-1 rounded-full"
           >
