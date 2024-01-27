@@ -86,17 +86,21 @@ export class SaleDetailComponent {
 
   deletePayment(item: any) {
     this.loading = true;
-    this.service.api(`payments/${item.id}`, 'delete').subscribe(
-      (res: any) => {
-        this.loading = false;
-        this.service.toast('success', 'Pago Eliminado');
-        this.getData();
-      },
-      (err: any) => {
-        console.log(err);
-        this.loading = false;
-        this.service.toast('error', 'Eliminación fallida');
-      }
-    );
+    this.service
+      .api(`sale/removePayment`, 'post', {
+        payment_id: item.id,
+      })
+      .subscribe(
+        (res: any) => {
+          this.loading = false;
+          this.service.toast('success', 'Pago Eliminado');
+          this.getData();
+        },
+        (err: any) => {
+          console.log(err);
+          this.loading = false;
+          this.service.toast('error', 'Eliminación fallida');
+        }
+      );
   }
 }

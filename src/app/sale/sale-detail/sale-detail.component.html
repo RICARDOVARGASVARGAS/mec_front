@@ -280,10 +280,10 @@
     nzCancelText="CANCELAR"
   >
     <ng-container *nzModalContent>
-      <!-- <app-sale-payment
-      (event)="this.getData()"
-      [sale]="item"
-    ></app-sale-payment> -->
+      <app-sale-payment
+        (event)="this.getData()"
+        [sale]="detail.sale"
+      ></app-sale-payment>
     </ng-container>
   </nz-modal>
 </div>
