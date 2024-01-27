@@ -1,0 +1,357 @@
+<app-load *ngIf="loading"></app-load>
+
+@if (detail) {
+
+<app-title
+  >Venta N° {{ detail.sale.id }} -
+  <span
+    *ngIf="detail.sale.status == 'debt'"
+    class="bg-yellow-500 p-1 rounded-lg text-white mr-1"
+  >
+    DEUDA
+  </span>
+  <span
+    *ngIf="detail.sale.status == 'pending'"
+    class="bg-green-500 p-1 rounded-lg text-white mr-1"
+  >
+    PENDIENTE
+  </span>
+  <span
+    *ngIf="detail.sale.status == 'cancelled'"
+    class="bg-red-500 p-1 rounded-lg text-white mr-1"
+  >
+    CANCELADO
+  </span>
+  <span
+    *ngIf="detail.sale.status == 'done'"
+    class="bg-blue-500 p-1 rounded-lg text-white mr-1"
+  >
+    PAGADO
+  </span>
+  -
+  <a
+    [routerLink]="['/report', detail.id]"
+    target="_blank"
+    class="ml-2 bg-sky-600 text-white px-2 py-1 rounded-full"
+  >
+    <i class="fa-solid fa-print"></i>
+  </a>
+</app-title>
+
+<!-- Detalle -->
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">TOTAL SERVICIOS</th>
+        <th scope="col" class="px-6 py-3">PAGOS</th>
+        <th scope="col" class="px-6 py-3">DESCUENTO</th>
+        <th scope="col" class="px-6 py-3">PENDIENTE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bg-white border-b hover:bg-gray-50 text-gray-700 font-bold">
+        <td class="px-6 py-4 text-green-700">S/. {{ detail.total }}</td>
+        <td class="px-6 py-4 text-red-700">S/. {{ detail.totalPayments }}</td>
+        <td class="px-6 py-4 text-red-700">S/. {{ detail.sale.discount }}</td>
+        <td class="px-6 py-4 text-blue-700">S/. {{ detail.pending }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Productos -->
+<div class="flex items-center justify-start mt-2">
+  <p class="text-lg font-bold">PRODUCTOS</p>
+  <button
+    (click)="showModal('product')"
+    type="button"
+    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-lg py-2 px-3 m-1 focus:outline-none"
+  >
+    <i class="fa-solid fa-boxes-stacked"></i>
+  </button>
+
+  <nz-modal
+    [(nzVisible)]="visible"
+    *ngIf="modal == 'product'"
+    nzTitle="AGREGAR PRODUCTOS"
+    (nzOnCancel)="cancel()"
+    (nzOnOk)="ok()"
+    nzOkDisabled
+    nzOkText="."
+    nzCancelText="CANCELAR"
+  >
+    <ng-container *nzModalContent>
+      <app-sale-product
+        (event)="this.getData()"
+        [product]="detail.sale"
+      ></app-sale-product>
+    </ng-container>
+  </nz-modal>
+</div>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">ID</th>
+        <th scope="col" class="px-6 py-3">Foto</th>
+        <th scope="col" class="px-6 py-3">Producto</th>
+        <th scope="col" class="px-6 py-3">Fecha</th>
+        <th scope="col" class="px-6 py-3">Cantidad</th>
+        <th scope="col" class="px-6 py-3">P.Compra</th>
+        <th scope="col" class="px-6 py-3">P.Venta</th>
+        <th scope="col" class="px-6 py-3">Total</th>
+        <th scope="col" class="px-6 py-3">
+          <span class="sr-only">Edit</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let item of detail.products; let index = index"
+        class="bg-white border-b hover:bg-gray-50 text-gray-700"
+      >
+        <td class="px-6 py-4">
+          {{ index + 1 }}
+        </td>
+        <td class="px-6 py-4">
+          <p-image
+            [src]="
+              item.storage
+                ? service.apiUrl + '/' + item.storage
+                : 'assets/img/logo.png'
+            "
+            alt="Perfil"
+            width="30"
+            [preview]="true"
+          ></p-image>
+        </td>
+        <td class="px-6 py-4 capitalize">{{ item.name }}</td>
+        <td class="px-6 py-4 text-center">{{ item.pivot.date_sale }}</td>
+        <td class="px-6 py-4 text-center">{{ item.pivot.quantity }}</td>
+        <td class="px-6 py-4">S/. {{ item.pivot.price_buy }}</td>
+        <td class="px-6 py-4">S/. {{ item.pivot.price_sell }}</td>
+        <td class="px-6 py-4">
+          S/. {{ item.pivot.price_sell * item.pivot.quantity }}
+        </td>
+        <td class="px-6 py-4 text-right flex">
+          <a
+            nz-popconfirm
+            [nzPopconfirmTitle]="'Eliminar Producto ' + item.name + '?'"
+            nzPopconfirmPlacement="top"
+            nzOkText="ELIMINAR"
+            nzCancelText="CANCELAR"
+            (nzOnConfirm)="deleteProduct(item)"
+            (nzOnCancel)="('')"
+            class="ml-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          >
+            <i class="fa-solid fa-circle-minus"></i>
+          </a>
+        </td>
+      </tr>
+      <tr class="bg-white border-b hover:bg-gray-50 text-gray-700">
+        <td class="px-6 py-4" colSpan="7"></td>
+        <td class="px-6 py-4 font-bold text-green-600">
+          S/. {{ detail.totalProducts }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Servicios -->
+<div class="flex items-center justify-start mt-2">
+  <p class="text-lg font-bold">SERVICIOS</p>
+  <button
+    (click)="showModal('service')"
+    type="button"
+    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-lg py-2 px-3 m-1 focus:outline-none"
+  >
+    <i class="fa-solid fa-gear"></i>
+  </button>
+
+  <nz-modal
+    [(nzVisible)]="visible"
+    *ngIf="modal == 'service'"
+    nzTitle="AGREGAR SERVICIOS"
+    (nzOnCancel)="cancel()"
+    (nzOnOk)="ok()"
+    nzOkDisabled
+    nzOkText="."
+    nzCancelText="CANCELAR"
+  >
+    <ng-container *nzModalContent>
+      <app-sale-service
+        (event)="this.getData()"
+        [service]="detail.sale"
+      ></app-sale-service>
+    </ng-container>
+  </nz-modal>
+</div>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">ID</th>
+        <th scope="col" class="px-6 py-3">Foto</th>
+        <th scope="col" class="px-6 py-3">Servicio</th>
+        <th scope="col" class="px-6 py-3">Fecha</th>
+        <th scope="col" class="px-6 py-3">P.Servicio</th>
+        <th scope="col" class="px-6 py-3">
+          <span class="sr-only">Edit</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let item of detail.services; let index = index"
+        class="bg-white border-b hover:bg-gray-50 text-gray-700"
+      >
+        <td class="px-6 py-4">
+          {{ index + 1 }}
+        </td>
+        <td class="px-6 py-4">
+          <p-image
+            [src]="
+              item.storage
+                ? service.apiUrl + '/' + item.storage
+                : 'assets/img/logo.png'
+            "
+            alt="Perfil"
+            width="30"
+            [preview]="true"
+          ></p-image>
+        </td>
+        <td class="px-6 py-4 capitalize">{{ item.name }}</td>
+        <td class="px-6 py-4">{{ item.pivot.date_service }}</td>
+        <td class="px-6 py-4">S/. {{ item.pivot.price_service }}</td>
+        <td class="px-6 py-4 text-right flex">
+          <a
+            nz-popconfirm
+            [nzPopconfirmTitle]="'Eliminar Servicio ' + item.name + '?'"
+            nzPopconfirmPlacement="top"
+            nzOkText="ELIMINAR"
+            nzCancelText="CANCELAR"
+            (nzOnConfirm)="deleteService(item)"
+            (nzOnCancel)="('')"
+            class="ml-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          >
+            <i class="fa-solid fa-circle-minus"></i>
+          </a>
+        </td>
+      </tr>
+      <tr class="bg-white border-b hover:bg-gray-50 text-gray-700">
+        <td class="px-6 py-4" colSpan="4"></td>
+        <td class="px-6 py-4 font-bold text-green-600">
+          S/. {{ detail.totalServices }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Pagos -->
+<div class="flex items-center justify-start mt-2">
+  <p class="text-lg font-bold">PAGOS</p>
+  <button
+    (click)="showModal('payment')"
+    type="button"
+    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-lg py-2 px-3 m-1 focus:outline-none"
+  >
+    <i class="fa-solid fa-money-bills"></i>
+  </button>
+
+  <nz-modal
+    [(nzVisible)]="visible"
+    *ngIf="modal == 'payment'"
+    nzTitle="AGREGAR SERVICIOS"
+    (nzOnCancel)="cancel()"
+    (nzOnOk)="ok()"
+    nzOkDisabled
+    nzOkText="."
+    nzCancelText="CANCELAR"
+  >
+    <ng-container *nzModalContent>
+      <!-- <app-sale-payment
+      (event)="this.getData()"
+      [sale]="item"
+    ></app-sale-payment> -->
+    </ng-container>
+  </nz-modal>
+</div>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">ID</th>
+        <th scope="col" class="px-6 py-3">Foto</th>
+        <th scope="col" class="px-6 py-3">Caja</th>
+        <th scope="col" class="px-6 py-3">Detalle</th>
+        <th scope="col" class="px-6 py-3">Fecha</th>
+        <th scope="col" class="px-6 py-3">Monto</th>
+        <th scope="col" class="px-6 py-3">
+          <span class="sr-only">Edit</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let item of detail.payments; let index = index"
+        class="bg-white border-b hover:bg-gray-50 text-gray-700"
+      >
+        <td class="px-6 py-4">
+          {{ index + 1 }}
+        </td>
+        <td class="px-6 py-4">
+          <p-image
+            [src]="
+              item.storage
+                ? service.apiUrl + '/' + item.storage
+                : 'assets/img/logo.png'
+            "
+            alt="Perfil"
+            width="30"
+            [preview]="true"
+          ></p-image>
+        </td>
+        <td class="px-6 py-4 capitalize">{{ item.box.name }}</td>
+        <td class="px-6 py-4 capitalize">{{ item.detail }}</td>
+        <td class="px-6 py-4">{{ item.date_payment }}</td>
+        <td class="px-6 py-4">S/. {{ item.amount }}</td>
+        <td class="px-6 py-4 text-right flex">
+          <a
+            nz-popconfirm
+            [nzPopconfirmTitle]="'Eliminar Pago ' + item.amount + '?'"
+            nzPopconfirmPlacement="top"
+            nzOkText="ELIMINAR"
+            nzCancelText="CANCELAR"
+            (nzOnConfirm)="deletePayment(item)"
+            (nzOnCancel)="('')"
+            class="ml-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          >
+            <i class="fa-solid fa-circle-minus"></i>
+          </a>
+        </td>
+      </tr>
+      <tr class="bg-white border-b hover:bg-gray-50 text-gray-700">
+        <td class="px-6 py-4" colSpan="5"></td>
+        <td class="px-6 py-4 font-bold text-green-600">
+          S/. {{ detail.totalPayments }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+}

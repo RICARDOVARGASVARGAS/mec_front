@@ -4,6 +4,7 @@ import { checkGuard } from '../guards/check.guard';
 import { SaleCreateComponent } from './sale-create/sale-create.component';
 import { SaleIndexComponent } from './sale-index/sale-index.component';
 import { SaleEditComponent } from './sale-edit/sale-edit.component';
+import { SaleDetailComponent } from './sale-detail/sale-detail.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,15 @@ const routes: Routes = [
     data: {
       access: ['sale.edit'],
     },
+  },
+
+  {
+    path: 'detail/:id',
+    component: SaleDetailComponent,
+    // canActivate: [checkGuard],
+    // data: {
+    //   access: ['sale.detail'],
+    // },
   },
 ];
 

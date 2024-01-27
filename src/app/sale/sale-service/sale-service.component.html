@@ -1,0 +1,70 @@
+<app-load *ngIf="loading"></app-load>
+
+<form>
+  <div class="px-2 py-3">
+    <div class="grid gap-2 mb-6">
+      <div>
+        <label class="label-form">Servicio</label>
+        <nz-select
+          class="w-full p-1 bg-gray-200 rounded-lg border-gray-300 border"
+          name="item.service_id"
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Selecciona un Servicio"
+          [(ngModel)]="item.service_id"
+          (ngModelChange)="select($event)"
+        >
+          <nz-option
+            *ngFor="let service of services"
+            [nzLabel]="service.name"
+            [nzValue]="service.id"
+          ></nz-option>
+        </nz-select>
+        <span class="error" *ngIf="errors">{{ errors.service_id }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">S/. P.Servicio</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-box text-gray-500"></i>
+          </div>
+          <input
+            name="price_service"
+            [(ngModel)]="item.price_service"
+            type="number"
+            step="any"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.price_service }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">Fecha Servicio</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-calendar-days text-gray-500"></i>
+          </div>
+          <input
+            name="date_service"
+            [(ngModel)]="item.date_service"
+            type="date"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.date_service }}</span>
+      </div>
+    </div>
+
+    <button
+      (click)="save()"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+    >
+      <i class="fa-solid fa-floppy-disk"></i>
+      REGISTRAR
+    </button>
+  </div>
+</form>

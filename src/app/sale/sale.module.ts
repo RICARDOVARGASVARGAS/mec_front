@@ -11,9 +11,22 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { ImageModule } from 'primeng/image';
 import { DirectivesModule } from '../directives/directives.module';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { SaleDetailComponent } from './sale-detail/sale-detail.component';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { SaleProductComponent } from './sale-product/sale-product.component';
+import { SaleServiceComponent } from './sale-service/sale-service.component';
+import { SalePaymentComponent } from './sale-payment/sale-payment.component';
 
 @NgModule({
-  declarations: [SaleIndexComponent, SaleCreateComponent, SaleEditComponent],
+  declarations: [
+    SaleIndexComponent,
+    SaleCreateComponent,
+    SaleEditComponent,
+    SaleDetailComponent,
+    SaleProductComponent,
+    SaleServiceComponent,
+    SalePaymentComponent,
+  ],
   imports: [
     CommonModule,
     SaleRoutingModule,
@@ -23,6 +36,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     ImageModule,
     DirectivesModule,
     NzSelectModule,
+    NzModalModule,
   ],
 })
 export class SaleModule {}
