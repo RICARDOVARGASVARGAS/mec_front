@@ -40,10 +40,10 @@ const routes: Routes = [
   {
     path: 'detail/:id',
     component: SaleDetailComponent,
-    // canActivate: [checkGuard],
-    // data: {
-    //   access: ['sale.detail'],
-    // },
+    canActivate: [checkGuard],
+    data: {
+      access: ['sale.detail'],
+    },
   },
 ];
 

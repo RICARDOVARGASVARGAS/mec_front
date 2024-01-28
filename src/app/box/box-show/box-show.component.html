@@ -1,0 +1,183 @@
+<app-load *ngIf="loading"></app-load>
+
+<app-title>Detalle de Caja: {{ item.name }}</app-title>
+
+<div class="mt-2 w-full flex items-center justify-center">
+  <nz-segmented
+    [nzOptions]="options"
+    (nzValueChange)="change($event)"
+  ></nz-segmented>
+</div>
+
+<!-- Movements -->
+<div
+  *ngIf="modal == 'Movimientos'"
+  class="relative overflow-x-auto shadow-md sm:rounded-lg mt-3"
+>
+  <div class="flex items-center justify-start mt-2">
+    <p class="text-lg font-bold">MOVIMIENTOS</p>
+    <button
+      (click)="showModal()"
+      type="button"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-lg py-2 px-3 m-1 focus:outline-none"
+    >
+      <i class="fa-solid fa-boxes-stacked"></i>
+    </button>
+
+    <nz-modal
+      [(nzVisible)]="visible"
+      nzTitle="AGREGAR MOVIMIENTO"
+      (nzOnCancel)="cancel()"
+      (nzOnOk)="ok()"
+      nzOkDisabled
+      nzOkText="."
+      nzCancelText="CANCELAR"
+    >
+      <ng-container *nzModalContent>
+        <app-box-movement (event)="getData()" [box]="item"></app-box-movement>
+      </ng-container>
+    </nz-modal>
+  </div>
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">ID</th>
+        <th scope="col" class="px-6 py-3">Detalle</th>
+        <th scope="col" class="px-6 py-3">Cliente</th>
+        <th scope="col" class="px-6 py-3">Fecha</th>
+        <th scope="col" class="px-6 py-3">Estado</th>
+        <th scope="col" class="px-6 py-3">Monto</th>
+        <th scope="col" class="px-6 py-3">
+          <span class="sr-only">Edit</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let item of movements; let index = index"
+        class="bg-white border-b hover:bg-gray-50 text-gray-700 w-full"
+      >
+        <td class="px-6 py-4">
+          {{ index + 1 }}
+        </td>
+        <td class="px-6 py-4">
+          {{ item.detail }}
+        </td>
+        <td class="px-6 py-4 capitalize">
+          <div *ngIf="item.client_id">
+            {{ item.client.document }} - {{ item.client.name }}
+            {{ item.client.surname }} {{ item.client.last_name }}
+          </div>
+        </td>
+        <td class="px-6 py-4">
+          {{ item.date_movement }}
+        </td>
+        <td class="px-6 py-4">
+          <span
+            class="{{
+              item.amount > 0 ? 'bg-green-500' : 'bg-red-500'
+            }} p-1 rounded-lg text-white "
+          >
+            {{ item.amount > 0 ? "INGRESO" : "EGRESO" }}
+          </span>
+        </td>
+        <td class="px-6 py-4 font-bold">
+          <span
+            class="{{
+              item.amount > 0 ? 'text-green-500' : 'text-red-500'
+            }} p-1 rounded-lg text-white "
+          >
+            S/. {{ item.amount > 0 ? item.amount : item.amount }}
+          </span>
+        </td>
+        <td class="px-6 py-4">
+          <a
+            nz-popconfirm
+            [nzPopconfirmTitle]="'Eliminar Movimiento' + item.amount + '?'"
+            nzPopconfirmPlacement="top"
+            nzOkText="ELIMINAR"
+            nzCancelText="CANCELAR"
+            (nzOnConfirm)="deleteMovement(item)"
+            (nzOnCancel)="('')"
+            class="ml-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          >
+            <i class="fa-solid fa-circle-minus"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Payments -->
+<div
+  *ngIf="modal == 'Pagos'"
+  class="relative overflow-x-auto shadow-md sm:rounded-lg mt-3"
+>
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">ID</th>
+        <th scope="col" class="px-6 py-3">Detalle</th>
+        <th scope="col" class="px-6 py-3">Venta</th>
+        <th scope="col" class="px-6 py-3">Fecha</th>
+        <th scope="col" class="px-6 py-3">Monto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let item of payments; let index = index"
+        class="bg-white border-b hover:bg-gray-50 text-gray-700 w-full"
+      >
+        <td class="px-6 py-4">
+          {{ index + 1 }}
+        </td>
+        <td class="px-6 py-4">
+          {{ item.detail }}
+        </td>
+        <td class="px-6 py-4 capitalize">
+          <a (click)="service.goPage('mec/sale/show/' + item.sale.id)">
+            Venta N° {{ item.sale.id }}
+          </a>
+        </td>
+        <td class="px-6 py-4">
+          {{ item.date_payment }}
+        </td>
+        <td class="px-6 py-4 font-bold text-green-700">
+          S/. {{ item.amount }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Caja -->
+<div class="" *ngIf="modal == 'Caja'">
+  <div class="grid grid-cols-2 mt-4">
+    <div class="col-span-2">
+      <div
+        class="w-full flex items-center justify-center font-bold text-2xl text-blue-700"
+      >
+        TOTAL: S/. {{ total }}
+      </div>
+    </div>
+    <div class="">
+      <div
+        class="w-full flex items-center justify-center font-bold text-2xl text-green-700"
+      >
+        MOVIMIENTOS: S/. {{ totalMovements }}
+      </div>
+    </div>
+    <div class="">
+      <div
+        class="w-full flex items-center justify-center font-bold text-2xl text-green-700"
+      >
+        PAGOS: S/. {{ totalPayments }}
+      </div>
+    </div>
+  </div>
+</div>

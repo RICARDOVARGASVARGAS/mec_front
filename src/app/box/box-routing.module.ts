@@ -4,6 +4,7 @@ import { checkGuard } from '../guards/check.guard';
 import { BoxIndexComponent } from './box-index/box-index.component';
 import { BoxCreateComponent } from './box-create/box-create.component';
 import { BoxEditComponent } from './box-edit/box-edit.component';
+import { BoxShowComponent } from './box-show/box-show.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,14 @@ const routes: Routes = [
     canActivate: [checkGuard],
     data: {
       access: ['box.edit'],
+    },
+  },
+  {
+    path: 'show/:id',
+    component: BoxShowComponent,
+    canActivate: [checkGuard],
+    data: {
+      access: ['box.show'],
     },
   },
 ];
