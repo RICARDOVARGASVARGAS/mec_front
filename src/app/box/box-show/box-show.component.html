@@ -60,7 +60,7 @@
         class="bg-white border-b hover:bg-gray-50 text-gray-700 w-full"
       >
         <td class="px-6 py-4">
-          {{ index + 1 }}
+          {{ item.number }}
         </td>
         <td class="px-6 py-4">
           {{ item.detail }}
@@ -134,14 +134,14 @@
         class="bg-white border-b hover:bg-gray-50 text-gray-700 w-full"
       >
         <td class="px-6 py-4">
-          {{ index + 1 }}
+          {{ item.number }}
         </td>
         <td class="px-6 py-4">
           {{ item.detail }}
         </td>
         <td class="px-6 py-4 capitalize">
-          <a (click)="service.goPage('mec/sale/show/' + item.sale.id)">
-            Venta N° {{ item.sale.id }}
+          <a (click)="service.goPage('sale/detail/' + item.sale.id)">
+            Venta N° {{ item.sale.number }}
           </a>
         </td>
         <td class="px-6 py-4">
