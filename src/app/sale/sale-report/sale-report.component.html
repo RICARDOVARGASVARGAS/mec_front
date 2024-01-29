@@ -7,8 +7,8 @@
     <div class="text-left">
       <img
         [src]="
-          service.user.storage
-            ? service.apiUrl + '/' + service.user.storage
+          service.user.company.storage
+            ? service.apiUrl + '/' + service.user.company.storage
             : 'assets/img/logo.png'
         "
         class="h-12 rounded-md"
@@ -18,13 +18,39 @@
     <div class="text-right">
       <span class="font-bold text-xl">ORDEN DE REPARACIÓN</span> <br />
       <span class="font-bold text-xl text-red-700"
-        >N° {{ ("000000" + detail.sale.id).slice(-6) }}</span
+        >N° {{ ("000000" + detail.sale.number).slice(-6) }}</span
       >
     </div>
   </div>
 
   <!-- Cuentas -->
+
   <div class="mb-5 flex justify-between">
+    <div class="">
+      @if (service.user.company.account_one) {
+      <div class="border pl-2 border-black w-72">
+        <span class="font-bold">{{ service.user.company.account_one }}</span>
+      </div>
+      } @if (service.user.company.account_two) {
+      <div class="border pl-2 border-black w-72">
+        <span class="font-bold">{{ service.user.company.account_two }}</span>
+      </div>
+      } @if (service.user.company.account_three) {
+      <div class="border pl-2 border-black w-72">
+        <span class="font-bold">{{ service.user.company.account_three }}</span>
+      </div>
+      }
+    </div>
+
+    <div class="">
+      @if (service.user.company.phone) { Teléfonos:
+      {{ service.user.company.phone }} <br />
+      }
+      {{ service.user.company.address }}
+    </div>
+  </div>
+
+  <!-- <div class="mb-5 flex justify-between">
     <div class="">
       <div class="border pl-2 border-black w-72">
         <span class="font-bold">BANCO DE LA NACIÓN: 04-195-308603</span>
@@ -42,7 +68,7 @@
       Jr. Santa Rosa, Barrio Salinas. <br />
       Andahuaylas.
     </div>
-  </div>
+  </div> -->
 
   <!-- Datos de Empresa -->
   <div class="grid grid-cols-2 border border-black">

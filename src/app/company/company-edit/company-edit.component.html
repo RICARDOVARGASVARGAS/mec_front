@@ -28,6 +28,91 @@
         </div>
         <span class="error" *ngIf="errors">{{ errors.name }}</span>
       </div>
+
+      <div>
+        <label class="label-form">Teléfono Mecánica</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-id-card-clip text-gray-500"></i>
+          </div>
+          <input
+            name="phone"
+            [(ngModel)]="item.phone"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.phone }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">Dirección Mecánica</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-id-card-clip text-gray-500"></i>
+          </div>
+          <input
+            name="address"
+            [(ngModel)]="item.address"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.address }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">Cuenta Bancaria N°1</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-id-card-clip text-gray-500"></i>
+          </div>
+          <input
+            name="account_one"
+            [(ngModel)]="item.account_one"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.account_one }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">Cuenta Bancaria N°2</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-id-card-clip text-gray-500"></i>
+          </div>
+          <input
+            name="account_two"
+            [(ngModel)]="item.account_two"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.account_two }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">Cuenta Bancaria N°3</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-id-card-clip text-gray-500"></i>
+          </div>
+          <input
+            name="account_three"
+            [(ngModel)]="item.account_three"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.account_three }}</span>
+      </div>
     </div>
 
     <button
