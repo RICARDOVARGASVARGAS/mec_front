@@ -79,6 +79,13 @@
         </td> -->
         <td class="px-6 py-4 text-right flex">
           <a
+            *setPermission="['car.history']"
+            (click)="service.goPage('car/history/' + item.id)"
+            class="ml-2 bg-blue-700 text-white px-2 py-1 rounded-full"
+          >
+            <i class="fa-solid fa-list-check"></i>
+          </a>
+          <a
             *setPermission="['car.edit']"
             (click)="service.goPage('car/edit/' + item.id)"
             class="ml-2 bg-blue-700 text-white px-2 py-1 rounded-full"

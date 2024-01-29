@@ -4,6 +4,7 @@ import { checkGuard } from '../guards/check.guard';
 import { CarEditComponent } from './car-edit/car-edit.component';
 import { CarCreateComponent } from './car-create/car-create.component';
 import { CarIndexComponent } from './car-index/car-index.component';
+import { CarHistoryComponent } from './car-history/car-history.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,14 @@ const routes: Routes = [
     canActivate: [checkGuard],
     data: {
       access: ['car.edit'],
+    },
+  },
+  {
+    path: 'history/:id',
+    component: CarHistoryComponent,
+    canActivate: [checkGuard],
+    data: {
+      access: ['car.history'],
     },
   },
 ];

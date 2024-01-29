@@ -11,9 +11,10 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { ImageModule } from 'primeng/image';
 import { DirectivesModule } from '../directives/directives.module';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { CarHistoryComponent } from './car-history/car-history.component';
 
 @NgModule({
-  declarations: [CarIndexComponent, CarCreateComponent, CarEditComponent],
+  declarations: [CarIndexComponent, CarCreateComponent, CarEditComponent, CarHistoryComponent],
   imports: [
     CommonModule,
     CarRoutingModule,

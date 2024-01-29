@@ -3,7 +3,7 @@
 @if (detail) {
 
 <app-title
-  >Venta N° {{ detail.sale.id }} -
+  >Venta N° {{ detail.sale.id }} 
   <span
     *ngIf="detail.sale.status == 'debt'"
     class="bg-yellow-500 p-1 rounded-lg text-white mr-1"
@@ -28,21 +28,29 @@
   >
     PAGADO
   </span>
-  -
-  <a
+
+  <a *setPermission="['sale.print']"
     [routerLink]="['/report-sale', detail.sale.id]"
     target="_blank"
     class="ml-2 bg-sky-600 text-white px-2 py-1 rounded-full"
   >
     <i class="fa-solid fa-print"></i>
   </a>
-  -
-  <a
+
+  <a *setPermission="['sale.edit']"
     (click)="service.goPage('sale/edit/' + detail.sale.id)"
     target="_blank"
     class="ml-2 bg-sky-600 text-white px-2 py-1 rounded-full"
   >
     <i class="fa-solid fa-marker"></i>
+  </a>
+
+  <a *setPermission="['car.history']"
+    (click)="service.goPage('car/history/' + detail.sale.car_id)"
+    target="_blank"
+    class="ml-2 bg-sky-600 text-white px-2 py-1 rounded-full"
+  >
+    <i class="fa-solid fa-list-check"></i>
   </a>
 </app-title>
 
