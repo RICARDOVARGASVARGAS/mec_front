@@ -28,7 +28,7 @@ export class BrandIndexComponent {
       .api(`mec/getBrands`, 'post', {
         company_id: this.service.user.company_id,
         search: this.search,
-        per_page: this.per_page,
+       perPage: this.per_page,
       })
       .subscribe(
         (res: any) => {

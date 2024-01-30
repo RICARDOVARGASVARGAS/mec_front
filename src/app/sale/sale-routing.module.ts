@@ -5,6 +5,7 @@ import { SaleCreateComponent } from './sale-create/sale-create.component';
 import { SaleIndexComponent } from './sale-index/sale-index.component';
 import { SaleEditComponent } from './sale-edit/sale-edit.component';
 import { SaleDetailComponent } from './sale-detail/sale-detail.component';
+import { SaleMessageComponent } from './sale-message/sale-message.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,15 @@ const routes: Routes = [
     canActivate: [checkGuard],
     data: {
       access: ['sale.detail'],
+    },
+  },
+
+  {
+    path: 'message/:id',
+    component: SaleMessageComponent,
+    canActivate: [checkGuard],
+    data: {
+      access: ['sale.message'],
     },
   },
 ];

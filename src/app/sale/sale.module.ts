@@ -9,6 +9,7 @@ import { SaleProductComponent } from './sale-product/sale-product.component';
 import { SaleServiceComponent } from './sale-service/sale-service.component';
 import { SalePaymentComponent } from './sale-payment/sale-payment.component';
 import { SaleDetailComponent } from './sale-detail/sale-detail.component';
+import { SaleMessageComponent } from './sale-message/sale-message.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
@@ -26,6 +27,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     SaleProductComponent,
     SaleServiceComponent,
     SalePaymentComponent,
+    SaleMessageComponent,
   ],
   imports: [
     CommonModule,

@@ -31,11 +31,12 @@ export class SaleIndexComponent {
         {
           company_id: this.service.user.company_id,
           search: this.search,
-          per_page: this.per_page,
+          perPage: this.per_page,
         }
       )
       .subscribe(
         (res: any) => {
+          console.log(res);
           this.loading = false;
           this.data = res.data;
           res.meta ? (this.meta = res.meta) : (this.meta = null);

@@ -1,0 +1,140 @@
+@if (loading) {
+<app-load>Cargando ...</app-load>
+}
+
+<app-title>Venta N° {{ item.number }}</app-title>
+
+<div class="flex flex-col flex-auto h-[80vh]">
+  <div
+    class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4"
+  >
+    <div class="flex flex-col h-full overflow-x-auto mb-4">
+      <div class="flex flex-col h-full">
+        <div class="grid grid-cols-12 gap-y-2">
+          @for (message of messages; track message.id ) {
+
+          <div
+            [class]="
+              message.user_id == service.user.id
+                ? 'col-start-6 col-end-13 p-3 rounded-lg'
+                : 'col-start-1 col-end-8 p-3 rounded-lg'
+            "
+          >
+            <div
+              [class]="
+                message.user_id == service.user.id
+                  ? 'flex items-center justify-start flex-row-reverse'
+                  : 'flex flex-row items-center'
+              "
+            >
+              <img
+                nz-popconfirm
+                nzPopconfirmTitle="Eliminar Mensaje?"
+                nzPopconfirmPlacement="bottom"
+                (nzOnConfirm)="deleteMessage(message.id)"
+                (nzOnCancel)="cancel()"
+                [src]="
+                  message.user.storage
+                    ? service.apiUrl + '/' + message.user.storage
+                    : 'assets/img/logo.png'
+                "
+                alt=""
+                class="h-10 w-10 rounded-full"
+              />
+              <div
+                class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl"
+              >
+                @if (message.type == 'text') {
+                <div>
+                  {{ message.content }}
+                </div>
+                }@else {
+
+                <p-image
+                  [src]="
+                    message.storage
+                      ? service.apiUrl + '/' + message.storage
+                      : 'assets/img/logo.png'
+                  "
+                  alt=""
+                  alt="Perfil"
+                  width="100"
+                  [preview]="true"
+                ></p-image>
+                }
+              </div>
+            </div>
+          </div>
+
+          }
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4"
+    >
+      <div>
+        <input
+          type="file"
+          #fileInput
+          style="display: none"
+          (change)="onFileSelected($event)"
+        />
+        <button
+          (click)="fileInput.click()"
+          class="flex items-center justify-center text-gray-400 hover:text-gray-600"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <div class="flex-grow ml-4">
+        <div class="relative w-full">
+          <form action="">
+            <input
+              name="content"
+              [(ngModel)]="msj.content"
+              type="text"
+              class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+            />
+          </form>
+        </div>
+      </div>
+      <div class="ml-4">
+        <button
+          (click)="sendMessage()"
+          class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
+        >
+          <span>
+            <svg
+              class="w-4 h-4 transform rotate-45 my-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+              ></path>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
