@@ -5,13 +5,13 @@ import { Title } from '@angular/platform-browser';
 import { SharedModule } from '../../shared/shared.module';
 
 @Component({
-  selector: 'app-sale-report',
+  selector: 'app-calculate-report',
   standalone: true,
   imports: [SharedModule],
-  templateUrl: './sale-report.component.html',
-  styleUrl: './sale-report.component.css',
+  templateUrl: './calculate-report.component.html',
+  styleUrl: './calculate-report.component.css',
 })
-export class SaleReportComponent {
+export class CalculateReportComponent {
   id = null;
   loading = false;
   detail: any = null;
@@ -31,21 +31,26 @@ export class SaleReportComponent {
     this.loading = true;
     this.service
       .api(
-        `sale/getSaleDetail/${this.id}?included=car.client,car.brand,car.color,car.year,car.example`,
+        `calculate/getCalculateDetail/${this.id}?included=car.client,car.brand,car.color,car.year,car.example`,
         'get'
       )
       .subscribe(
         (res: any) => {
           this.detail = res;
-          this.titleService.setTitle(
-            this.detail.sale.car.client.name +
-              ' ' +
-              this.detail.sale.car.client.surname +
-              ' ' +
-              this.detail.sale.car.client.last_name +
-              ' - ' +
-              this.detail.sale.id
-          );
+          if (this.detail.calculate.car) {
+            this.titleService.setTitle(
+              this.detail.calculate.car.client.name +
+                ' ' +
+                this.detail.calculate.car.client.surname +
+                ' ' +
+                this.detail.calculate.car.client.last_name +
+                ' - ' +
+                this.detail.calculate.id
+            );
+          } else {
+            this.titleService.setTitle('Cotización: ' + this.detail.calculate.number);
+          }
+
           this.loading = false;
         },
         (err: any) => {

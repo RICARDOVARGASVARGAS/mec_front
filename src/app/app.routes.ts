@@ -4,6 +4,7 @@ import { authGuard } from './guards/auth.guard';
 import { WelcomeComponent } from './auth/welcome/welcome.component';
 import { NotFoundComponent } from './auth/not-found/not-found.component';
 import { SaleReportComponent } from './sale/sale-report/sale-report.component';
+import { CalculateReportComponent } from './calculate/calculate-report/calculate-report.component';
 
 export const routes: Routes = [
   {
@@ -67,8 +68,19 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'calculate',
+    loadChildren: () =>
+      import('./calculate/calculate.module').then((m) => m.CalculateModule),
+    canActivate: [authGuard],
+  },
+  {
     path: 'report-sale/:id',
     component: SaleReportComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'report-calculate/:id',
+    component: CalculateReportComponent,
     canActivate: [authGuard],
   },
   {

@@ -1,0 +1,135 @@
+@if (loading) {
+<app-load>Cargando ...</app-load>
+}
+
+<app-title>Actualizar Cotización</app-title>
+
+<form>
+  <div class="px-2 py-3">
+    <div class="grid gap-2 mb-6 md:grid-cols-2">
+      <div>
+        <label class="label-form"
+          >Vehículo<i class="fa-brands fa-medapps text-red-600 font-bold"></i
+        ></label>
+        <nz-select
+          class="w-full p-1 bg-gray-200 rounded-lg border-gray-300 border"
+          name="item.car_id"
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Selecciona un Vehículo"
+          [(ngModel)]="item.car_id"
+        >
+          <nz-option
+            [nzLabel]="'Ninguno'"
+            [nzValue]="null"
+            nzValue="jack"
+          ></nz-option>
+          <nz-option
+            *ngFor="let car of data.cars"
+            [nzLabel]="
+              car.plate +
+              ' - ' +
+              car.example.name +
+              ' - ' +
+              car.color.name +
+              ' - ' +
+              car.year.name +
+              ' / ' +
+              car.client.document +
+              ' - ' +
+              car.client.name +
+              ' ' +
+              car.client.surname +
+              ' ' +
+              car.client.last_name
+            "
+            [nzValue]="car.id"
+            nzValue="jack"
+          ></nz-option>
+        </nz-select>
+
+        <span class="error" *ngIf="errors">{{ errors.car_id }}</span>
+      </div>
+
+      <div>
+        <label class="label-form"
+          >Conductor <i class="fa-brands fa-medapps text-red-600 font-bold"></i>
+        </label>
+        <nz-select
+          class="w-full p-1 bg-gray-200 rounded-lg border-gray-300 border"
+          name="item.client_id"
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Selecciona un Conductor"
+          [(ngModel)]="item.client_id"
+        >
+          <nz-option
+            [nzLabel]="'Ninguno'"
+            [nzValue]="null"
+            nzValue="jack"
+          ></nz-option>
+          <nz-option
+            *ngFor="let client of data.clients"
+            [nzLabel]="
+              client.document +
+              ' - ' +
+              client.name +
+              ' ' +
+              client.surname +
+              ' ' +
+              client.last_name
+            "
+            [nzValue]="client.id"
+            nzValue="jack"
+          ></nz-option>
+        </nz-select>
+
+        <span class="error" *ngIf="errors">{{ errors.client_id }}</span>
+      </div>
+    </div>
+
+    <div class="flex">
+      <button (click)="save()" class="btn-save">
+        <i class="fa-solid fa-pen-to-square"></i>
+      </button>
+
+      <a
+        *setPermission="['calculate.destroy']"
+        nz-popconfirm
+        [nzPopconfirmTitle]="'Eliminar Venta'"
+        nzPopconfirmPlacement="top"
+        nzOkText="ELIMINAR"
+        nzCancelText="CANCELAR"
+        (nzOnConfirm)="delete()"
+        (nzOnCancel)="('')"
+        class="btn-delete"
+      >
+        <i class="fa-solid fa-trash"></i>
+      </a>
+
+      <a
+        *setPermission="['calculate.index']"
+        (click)="service.goPage('calculate/index')"
+        class="btn-list"
+      >
+        <i class="fa-solid fa-table"></i>
+      </a>
+
+      <a
+        *setPermission="['calculate.detail']"
+        (click)="service.goPage('calculate/detail/' + item.id)"
+        class="btn-list"
+      >
+        <i class="fa-solid fa-book"></i>
+      </a>
+
+      <a
+        *setPermission="['calculate.print']"
+        [routerLink]="['/report-calculate', item.id]"
+        class="btn-list"
+      >
+        <i class="fa-solid fa-print"></i>
+      </a>
+    </div>
+  </div>
+</form>

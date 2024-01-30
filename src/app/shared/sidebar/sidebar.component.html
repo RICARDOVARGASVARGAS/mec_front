@@ -33,7 +33,7 @@
           (click)="goPage('client/index')"
           class="menu-a"
         >
-        <i class="fa-solid fa-users icon"></i>
+          <i class="fa-solid fa-users icon"></i>
           <span
             class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
             >Clientes</span
@@ -81,7 +81,7 @@
           (click)="goPage('company/edit')"
           class="menu-a"
         >
-          <i class="fa-solid fa-users text-xl ml-1"></i>
+          <i class="fa-brands fa-themeco text-xl ml-1"></i>
           <span
             class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
             >Mecánica</span
@@ -102,7 +102,28 @@
         </a>
       </li>
 
-      <li *setPermission="['year.index']">
+      <li *setPermission="['calculate.index']">
+        <a
+          onclick="return false;"
+          (click)="goPage('calculate/index')"
+          class="menu-a"
+        >
+          <i class="fa-solid fa-book icon"></i>
+          <span
+            class="flex-1 ml-2 text-left whitespace-nowrap font-bold text-base"
+            >Cotizaciones</span
+          >
+        </a>
+      </li>
+
+      <li
+        *setPermission="[
+          'year.index',
+          'brand.index',
+          'example.index',
+          'color.index'
+        ]"
+      >
         <button
           type="button"
           class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"

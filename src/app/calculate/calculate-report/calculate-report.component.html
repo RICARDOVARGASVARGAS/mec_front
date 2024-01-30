@@ -1,0 +1,283 @@
+@if (loading) {
+<app-load> Cargando Reporte ... </app-load>
+} @if (detail){
+<div class="p-1">
+  <!-- Cabecera -->
+  <div class="grid grid-cols-3 p-2">
+    <div class="text-left">
+      <img
+        [src]="
+          service.user.company.storage
+            ? service.apiUrl + '/' + service.user.company.storage
+            : 'assets/img/logo.png'
+        "
+        class="h-12 rounded-md"
+      />
+    </div>
+    <div class="col-span-1"></div>
+    <div class="text-right">
+      <span class="font-bold text-xl">ORDEN DE COTIZACIÓN</span> <br />
+      <span class="font-bold text-xl text-red-700"
+        >N° {{ ("000000" + detail.calculate.number).slice(-6) }}</span
+      >
+    </div>
+  </div>
+
+  <!-- Cuentas -->
+  <div class="mb-5 flex justify-between">
+    <div class="">
+      @if (service.user.company.account_one) {
+      <div class="border pl-2 border-black w-72">
+        <span class="font-bold">{{ service.user.company.account_one }}</span>
+      </div>
+      } @if (service.user.company.account_two) {
+      <div class="border pl-2 border-black w-72">
+        <span class="font-bold">{{ service.user.company.account_two }}</span>
+      </div>
+      } @if (service.user.company.account_three) {
+      <div class="border pl-2 border-black w-72">
+        <span class="font-bold">{{ service.user.company.account_three }}</span>
+      </div>
+      }
+    </div>
+
+    <div class="">
+      @if (service.user.company.phone) { Teléfonos:
+      {{ service.user.company.phone }} <br />
+      }
+      {{ service.user.company.address }}
+    </div>
+  </div>
+
+  <!-- Datos de Empresa -->
+  <div class="grid grid-cols-2 border border-black">
+    <!-- <div class="border-style">
+          <span class="font-bold"
+            >FECHA DE INGRESO: {{ detail.calculate.entry_date }}</span
+          >
+        </div>
+        <div class="border-style">
+          <span class="font-bold"
+            >FECHA DE SALIDA: {{ detail.calculate.exit_date }}</span
+          >
+        </div> -->
+    <div class="border-style col-span-2 text-center bg-blue-200">
+      <span class="font-bold">DATOS EMPRESA/CONDUCTOR</span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        Propietario: @if (detail.calculate.car) {
+        {{ detail.calculate.car.client.name }}
+        {{ detail.calculate.car.client.surname }}
+        {{ detail.calculate.car.client.last_name }}
+        }
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        Conductor: @if (detail.calculate.client) {
+        {{ detail.calculate.client ? detail.calculate.client.name : "" }}
+        {{ detail.calculate.client ? detail.calculate.client.surname : "" }}
+        {{ detail.calculate.client ? detail.calculate.client.last_name : "" }}
+        }
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        R.U.C: @if (detail.calculate.car) {
+        {{ detail.calculate.car.client.document }}
+        }
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        DNI: @if (detail.calculate.client) {
+        {{ detail.calculate.client ? detail.calculate.client.document : "" }}
+        }
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        Teléfono: @if (detail.calculate.car) {
+        {{ detail.calculate.car.client.phone }}
+        }
+      </span>
+    </div>
+
+    <div class="border-style">
+      <span class="font-bold">
+        Celular: @if (detail.calculate.client) {
+        {{ detail.calculate.client ? detail.calculate.client.phone : "" }}
+        }
+      </span>
+    </div>
+
+    <div class="border-style col-span-2">
+      <span class="font-bold">
+        Dirección: @if (detail.calculate.car){
+        {{ detail.calculate.car.client.address }}
+        }
+      </span>
+    </div>
+  </div>
+
+  <!-- Datos del Vehículo -->
+  <div class="grid grid-cols-3 border border-black">
+    <div class="border-style col-span-3 text-center bg-blue-200">
+      <span class="font-bold">DATOS DEL VEHÍCULO</span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        Placa: @if (detail.calculate.car){
+        {{ detail.calculate.car.plate }}
+        }
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        N° Motor: @if (detail.calculate.car){
+        {{ detail.calculate.car.engine }}
+        }
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        N° Chasis: @if (detail.calculate.car){
+        {{ detail.calculate.car.chassis }}
+        }
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        Marca: @if (detail.calculate.car){
+        {{ detail.calculate.car.brand.name }}
+        }
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        Modelo: @if (detail.calculate.car){
+        {{ detail.calculate.car.example.name }}
+        }
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        Año: @if (detail.calculate.car){
+        {{ detail.calculate.car.year.name }}
+        }
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        Color: @if (detail.calculate.car){
+        {{ detail.calculate.car.color.name }}
+        }
+      </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold"> </span>
+    </div>
+    <div class="border-style">
+      <span class="font-bold">
+        KM: @if (detail.calculate.car){
+        {{ detail.calculate.km }}
+        }
+      </span>
+    </div>
+  </div>
+
+  <!-- Productos -->
+  @if (detail.products.length > 0) {
+  <table class="border-style w-full mt-1">
+    <thead>
+      <tr>
+        <th class="border-style-table text-center bg-blue-200" colSpan="4">
+          PRODUCTOS
+        </th>
+      </tr>
+      <tr>
+        <th class="border-style-table">CANT</th>
+        <th class="border-style-table">DESCRIPCIÓN</th>
+        <th class="border-style-table">P.UNIT</th>
+        <th class="border-style-table">TOTAL</th>
+      </tr>
+    </thead>
+    <tbody class="font-bold">
+      @for (item of detail.products; track item.id) {
+      <tr>
+        <td class="border-style-table text-center md:w-24">
+          {{ item.pivot.quantity }}
+        </td>
+        <td class="border-style-table uppercase">
+          {{ item.ticket }}
+        </td>
+        <td class="border-style-table text-center md:w-64">
+          S/. {{ item.price_sell }}
+        </td>
+        <td class="border-style-table text-center md:w-64">
+          S/. {{ item.pivot.quantity * item.price_sell }}
+        </td>
+      </tr>
+      }
+
+      <tr class="bg-white border-b hover:bg-gray-50 text-gray-700">
+        <td class="border-style-table" colSpan="3"></td>
+        <td class="border-style-table text-center">
+          S/. {{ detail.totalProducts }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  }
+
+  <!-- SERVICIOS -->
+  @if (detail.services.length > 0) {
+  <table class="border-style w-full mt-1">
+    <thead>
+      <tr>
+        <th class="border-style-table text-center bg-blue-200" colSpan="2">
+          SERVICIOS
+        </th>
+      </tr>
+      <tr>
+        <th class="border-style-table">DESCRIPCIÓN</th>
+        <th class="border-style-table">TOTAL</th>
+      </tr>
+    </thead>
+    <tbody class="font-bold">
+      @for (item of detail.services; track item.id) {
+      <tr>
+        <td class="border-style-table uppercase">
+          {{ item.ticket }}
+        </td>
+        <td class="border-style-table text-center md:w-64">
+          S/. {{ item.pivot.price_service }}
+        </td>
+      </tr>
+      }
+      <tr class="bg-white border-b hover:bg-gray-50 text-gray-700">
+        <td class="border-style-table" colSpan="1"></td>
+        <td class="border-style-table text-center">
+          S/. {{ detail.totalServices }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  }
+
+  <!-- Detalle -->
+  <table class="border-style w-full mt-2">
+    <thead>
+      <tr>
+        <th class="border-style-table">TOTAL</th>
+      </tr>
+    </thead>
+    <tbody class="font-bold">
+      <tr>
+        <td class="border-style-table text-center">S/. {{ detail.total }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+}

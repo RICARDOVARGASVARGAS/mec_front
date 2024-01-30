@@ -21,7 +21,10 @@ export class AppComponent implements OnInit {
 
   constructor(private service: ApiService, private location: Location) {
     this.user = this.service.user;
-    if (this.location.path().includes('report-sale')) {
+    if (
+      this.location.path().includes('report-sale') ||
+      this.location.path().includes('report-calculate')
+    ) {
       this.report = true;
     }
   }
