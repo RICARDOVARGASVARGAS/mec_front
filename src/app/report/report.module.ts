@@ -9,6 +9,7 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { ImageModule } from 'primeng/image';
 import { DirectivesModule } from '../directives/directives.module';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [ReportProfitComponent],
@@ -21,6 +22,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     ImageModule,
     DirectivesModule,
     NzSelectModule,
+    NgApexchartsModule
   ],
 })
 export class ReportModule {}
