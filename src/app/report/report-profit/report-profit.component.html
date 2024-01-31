@@ -2,7 +2,40 @@
 <app-load>Cargando ...</app-load>
 }
 
-<app-title>Generar Reporte de Ganancias de Ventas</app-title>
+<app-title>Reporte de Ganancias</app-title>
+
+<div
+  class=" w-full bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6"
+>
+  <div
+    class="flex justify-between border-gray-200 border-b dark:border-gray-700 pb-3"
+  >
+    <dl>
+      <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">
+        Generado
+      </dt>
+      <dd class="leading-none text-3xl font-bold text-gray-900 dark:text-white">
+        S/. {{ data.totalPayments }}
+      </dd>
+    </dl>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-3 py-3">
+    @for (box of data.boxNames; track $index) {
+    <dl>
+      <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">
+        {{ box | titlecase }}
+      </dt>
+      <dd
+        class="leading-none text-xl font-bold text-green-500 dark:text-green-400"
+      >
+        S/. {{ data.chart[box] }}
+      </dd>
+    </dl>
+    }
+  </div>
+
+</div>
 
 <form class="overflow-x-scroll">
   <div class="px-2 py-3">
