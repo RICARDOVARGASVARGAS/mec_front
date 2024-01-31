@@ -4,7 +4,7 @@
 
 <app-title>Actualizar Venta</app-title>
 
-<form>
+<form class="overflow-x-scroll">
   <div class="px-2 py-3">
     <div class="grid gap-2 mb-6 md:grid-cols-2">
       <div>
@@ -80,6 +80,26 @@
           />
         </div>
         <span class="error" *ngIf="errors">{{ errors.exit_date }}</span>
+      </div>
+
+      <div>
+        <label class="label-form"
+          >Fecha Venta
+          <i class="fa-brands fa-medapps text-red-600 font-bold"></i
+        ></label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="payment_date"
+            [(ngModel)]="item.payment_date"
+            type="date"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.payment_date }}</span>
       </div>
 
       <div>

@@ -22,7 +22,8 @@
       <tr>
         <th scope="col" class="px-6 py-3">VENTA</th>
         <th scope="col" class="px-6 py-3">Estado</th>
-        <th scope="col" class="px-6 py-3">Conductor</th>
+        <!-- <th scope="col" class="px-6 py-3">Conductor</th> -->
+        <th scope="col" class="px-6 py-3">Fecha</th>
         <th scope="col" class="px-6 py-3">Propietario</th>
         <th scope="col" class="px-6 py-3">Vehículo</th>
         <!-- <th scope="col" class="px-6 py-3">Fecha</th> -->
@@ -61,12 +62,15 @@
             PAGADO
           </span>
         </td>
-        <td class="px-6 py-4 capitalize">
+        <td class="px-6 py-4 w-32">
+          {{ item.payment_date | date: "dd/MM/yyyy" }}
+        </td>
+        <!-- <td class="px-6 py-4 capitalize">
           <div *ngIf="item.client">
             {{ item.client.document }} - {{ item.client.name }}
             {{ item.client.surname }} {{ item.client.last_name }}
           </div>
-        </td>
+        </td> -->
         <td class="px-6 py-4 capitalize">
           {{ item.car.client.document }} - {{ item.car.client.name }}
           {{ item.car.client.surname }} {{ item.car.client.last_name }}

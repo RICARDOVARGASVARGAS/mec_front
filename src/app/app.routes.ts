@@ -74,6 +74,12 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'report',
+    loadChildren: () =>
+      import('./report/report.module').then((m) => m.ReportModule),
+    canActivate: [authGuard],
+  },
+  {
     path: 'report-sale/:id',
     component: SaleReportComponent,
     canActivate: [authGuard],
