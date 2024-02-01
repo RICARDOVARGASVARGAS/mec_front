@@ -67,7 +67,7 @@ export class ReportProfitComponent {
       .subscribe((res: any) => {
         this.loading = false;
         this.data = res;
-        console.log(this.data);
+        // console.log(this.data);
         // console.log(Object.keys(this.data.chart));
         // console.log(Object.values(this.data.chart));
         this.chartOptions.labels = Object.keys(this.data.chart).map((clave) =>
