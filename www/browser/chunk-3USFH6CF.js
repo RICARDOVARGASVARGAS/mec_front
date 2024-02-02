@@ -1,0 +1,1 @@
+import{I as r,Sc as o}from"./chunk-XRNJ2UIA.js";var p=(a,i)=>{let e=r(o),t=a.data.access,c=e.user.permissions.map(s=>s.name);if(t){for(let s of t)if(c.includes(s))return!0}return e.toast("warning","No tiene permisos para esta ruta"),e.goPage("welcome"),!1};export{p as a};

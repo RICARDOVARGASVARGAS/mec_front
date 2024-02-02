@@ -151,17 +151,18 @@
         >
           <nz-option
             *ngFor="let client of data.clients"
-            [nzLabel]="
+            nzLabel="
+              {{
               client.document +
-              ' - ' +
-              client.name +
-              ' ' +
-              client.surname +
-              ' ' +
-              client.last_name
+                ' - ' +
+                client.name +
+                ' ' +
+                client.surname +
+                ' ' +
+                client.last_name
+            }}
             "
-            [nzValue]="client.id"
-            nzValue="jack"
+            nzValue="{{ client.id }}"
           ></nz-option>
         </nz-select>
 
