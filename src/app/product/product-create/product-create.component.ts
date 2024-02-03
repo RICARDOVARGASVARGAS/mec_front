@@ -20,7 +20,7 @@ export class ProductCreateComponent {
     this.service.api('mec/registerProduct', 'post', this.item).subscribe(
       (res: any) => {
         this.loading = false;
-        this.service.toast('success', 'Producto RegistradO');
+        this.service.toast('success', 'Producto Registrado');
         this.service.goPage('product/edit/' + res.data.id);
       },
       (err: any) => {

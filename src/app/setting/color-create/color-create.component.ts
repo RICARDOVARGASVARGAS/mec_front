@@ -11,7 +11,9 @@ export class ColorCreateComponent {
   item: any = {};
   errors: any = null;
 
-  constructor(public service: ApiService) {}
+  constructor(public service: ApiService) {
+    this.item.hex = '#000000';
+  }
 
   save() {
     this.loading = true;
