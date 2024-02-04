@@ -112,28 +112,30 @@
           nzPlaceHolder="Selecciona un Vehículo"
           [(ngModel)]="item.car_id"
         >
+          @for (car of data.cars; track car.id) {
           <nz-option
-            *ngFor="let car of data.cars"
-            [nzLabel]="
+            nzLabel="
+              {{
               car.plate +
-              ' - ' +
-              car.example.name +
-              ' - ' +
-              car.color.name +
-              ' - ' +
-              car.year.name +
-              ' / ' +
-              car.client.document +
-              ' - ' +
-              car.client.name +
-              ' ' +
-              car.client.surname +
-              ' ' +
-              car.client.last_name
+                ' - ' +
+                car.example.name +
+                ' - ' +
+                car.color.name +
+                ' - ' +
+                car.year.name +
+                ' / ' +
+                car.client.document +
+                ' - ' +
+                car.client.name +
+                ' ' +
+                car.client.surname +
+                ' ' +
+                car.client.last_name
+            }}
             "
-            [nzValue]="car.id"
-            nzValue="jack"
+            nzValue="{{ car.id }}"
           ></nz-option>
+          }
         </nz-select>
 
         <span class="error" *ngIf="errors">{{ errors.car_id }}</span>
@@ -151,25 +153,23 @@
           nzPlaceHolder="Selecciona un Conductor"
           [(ngModel)]="item.client_id"
         >
+          <nz-option nzLabel="Ninguno" nzValue="{{ null }}"></nz-option>
+          @for (client of data.clients; track client.id) {
           <nz-option
-            [nzLabel]="'Ninguno'"
-            [nzValue]="null"
-            nzValue="jack"
-          ></nz-option>
-          <nz-option
-            *ngFor="let client of data.clients"
-            [nzLabel]="
+            nzLabel="
+             {{
               client.document +
-              ' - ' +
-              client.name +
-              ' ' +
-              client.surname +
-              ' ' +
-              client.last_name
+                ' - ' +
+                client.name +
+                ' ' +
+                client.surname +
+                ' ' +
+                client.last_name
+            }}  
             "
-            [nzValue]="client.id"
-            nzValue="jack"
+            nzValue="{{ client.id }}"
           ></nz-option>
+          }
         </nz-select>
 
         <span class="error" *ngIf="errors">{{ errors.client_id }}</span>
