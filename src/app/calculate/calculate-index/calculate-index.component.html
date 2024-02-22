@@ -34,29 +34,16 @@
       <tr class="bg-white border-b hover:bg-gray-50 text-gray-700">
         <td class="px-6 py-4">N° {{ item.number }}</td>
         <td class="px-6 py-4 capitalize">
-          @if (item.client) {
-          {{ item.client.document }} - {{ item.client.name }}
-          {{ item.client.surname }} {{ item.client.last_name }}
-          }
+          {{ item.dni_calculate }} - {{ item.driver_calculate }}
         </td>
         <td class="px-6 py-4 capitalize">
-          @if (item.car) {
-          {{ item.car.client.document }} - {{ item.car.client.name }}
-          {{ item.car.client.surname }} {{ item.car.client.last_name }}
-          }
+          {{ item.ruc_calculate }} - {{ item.property_calculate }}
         </td>
+
         <td class="px-6 py-4">
-          @if (item.car) {
-          <i
-            class="fa-solid fa-car-on text-2xl"
-            [style]="'color:' + item.car.color.hex"
-          ></i>
-          <br />
-          <div>
-            {{ item.car.plate }} - {{ item.car.example.name }} <br />
-            {{ item.car.brand.name }} - {{ item.car.year.name }} <br />
-          </div>
-          }
+          {{ item.plate_calculate }} - {{ item.brand_calculate }} -
+          {{ item.model_calculate }} -
+          {{ item.year_car_calculate }}
         </td>
         <td class="px-6 py-4 flex justify-center items-center">
           <a

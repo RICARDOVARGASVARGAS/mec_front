@@ -26,7 +26,7 @@ export class CalculateIndexComponent {
     this.loading = true;
     this.service
       .api(
-        `calculate/getCalculates?included=client,car.client,car.brand,car.color,car.year,car.example`,
+        `calculate/getCalculates`,
         'post',
         {
           company_id: this.service.user.company_id,
