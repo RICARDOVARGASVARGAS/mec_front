@@ -24,10 +24,11 @@ export class CalculateDetailComponent {
   getData() {
     this.loading = true;
     this.service
-      .api(`calculate/getCalculateDetail/${this.id}`, 'get')
+      .api(`calculate/getListItemsCalculate/${this.id}`, 'get')
       .subscribe(
         (res: any) => {
           this.detail = res;
+          console.log(res);
           this.loading = false;
         },
         (err: any) => {
@@ -53,34 +54,21 @@ export class CalculateDetailComponent {
   }
 
   deleteProduct(item: any) {
+    console.log(item);
     this.loading = true;
-    this.service.api(`calculate/removeProduct`, 'post', item.pivot).subscribe(
-      (res: any) => {
-        this.loading = false;
-        this.service.toast('success', 'Producto Eliminado');
-        this.getData();
-      },
-      (err: any) => {
-        console.log(err);
-        this.loading = false;
-        this.service.toast('error', 'Eliminación fallida');
-      }
-    );
-  }
-
-  deleteService(item: any) {
-    this.loading = true;
-    this.service.api(`calculate/removeService`, 'post', item.pivot).subscribe(
-      (res: any) => {
-        this.loading = false;
-        this.service.toast('success', 'Servicio Eliminado');
-        this.getData();
-      },
-      (err: any) => {
-        console.log(err);
-        this.loading = false;
-        this.service.toast('error', 'Eliminación fallida');
-      }
-    );
+    this.service
+      .api(`calculate/deleteItemCalculate/${item.id}`, 'delete')
+      .subscribe(
+        (res: any) => {
+          this.loading = false;
+          this.service.toast('success', 'Producto Eliminado');
+          this.getData();
+        },
+        (err: any) => {
+          console.log(err);
+          this.loading = false;
+          this.service.toast('error', 'Eliminación fallida');
+        }
+      );
   }
 }

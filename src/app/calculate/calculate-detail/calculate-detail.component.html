@@ -31,12 +31,14 @@
       class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
     >
       <tr>
-        <th scope="col" class="px-6 py-3">TOTAL SERVICIOS</th>
+        <th scope="col" class="px-6 py-3">TOTAL</th>
       </tr>
     </thead>
     <tbody>
       <tr class="bg-white border-b hover:bg-gray-50 text-gray-700 font-bold">
-        <td class="px-6 py-4 text-green-700">S/. {{ detail.total }}</td>
+        <td class="px-6 py-4 text-green-700">
+          S/. {{ detail.total | number : "1.2-2" }}
+        </td>
       </tr>
     </tbody>
   </table>
@@ -78,11 +80,10 @@
       class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
     >
       <tr>
-        <th scope="col" class="px-6 py-3">ID</th>
-        <th scope="col" class="px-6 py-3">Foto</th>
-        <th scope="col" class="px-6 py-3">Producto</th>
         <th scope="col" class="px-6 py-3">Cantidad</th>
-        <th scope="col" class="px-6 py-3">P.Venta</th>
+        <th scope="col" class="px-6 py-3">Descripción</th>
+        <th scope="col" class="px-6 py-3">Marca</th>
+        <th scope="col" class="px-6 py-3">P.Unit</th>
         <th scope="col" class="px-6 py-3">Total</th>
         <th scope="col" class="px-6 py-3">
           <span class="sr-only">Edit</span>
@@ -91,34 +92,22 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let item of detail.products; let index = index"
+        *ngFor="let item of detail.items; let index = index"
         class="bg-white border-b hover:bg-gray-50 text-gray-700"
       >
+        <td class="px-6 py-4">{{ item.amount_item }}</td>
+        <td class="px-6 py-4 text-center">{{ item.description_item }}</td>
+        <td class="px-6 py-4 text-center">{{ item.brand_item }}</td>
+        <td class="px-6 py-4">S/. {{ item.price_item | number : "1.2-2" }}</td>
         <td class="px-6 py-4">
-          {{ index + 1 }}
-        </td>
-        <td class="px-6 py-4">
-          <p-image
-            [src]="
-              item.storage
-                ? service.apiUrl + '/' + item.storage
-                : 'assets/img/logo.png'
-            "
-            alt="Perfil"
-            width="30"
-            [preview]="true"
-          ></p-image>
-        </td>
-        <td class="px-6 py-4 capitalize">{{ item.name }}</td>
-        <td class="px-6 py-4 text-center">{{ item.pivot.quantity }}</td>
-        <td class="px-6 py-4">S/. {{ item.pivot.price_sell }}</td>
-        <td class="px-6 py-4">
-          S/. {{ item.pivot.price_sell * item.pivot.quantity }}
+          S/. {{ item.amount_item * item.price_item | number : "1.2-2" }}
         </td>
         <td class="px-6 py-4 text-right flex">
           <a
             nz-popconfirm
-            [nzPopconfirmTitle]="'Eliminar Producto ' + item.name + '?'"
+            [nzPopconfirmTitle]="
+              'Eliminar Producto ' + item.description_item + '?'
+            "
             nzPopconfirmPlacement="top"
             nzOkText="ELIMINAR"
             nzCancelText="CANCELAR"
@@ -131,104 +120,13 @@
         </td>
       </tr>
       <tr class="bg-white border-b hover:bg-gray-50 text-gray-700">
-        <td class="px-6 py-4" colSpan="5"></td>
+        <td class="px-6 py-4" colSpan="4"></td>
         <td class="px-6 py-4 font-bold text-green-600">
-          S/. {{ detail.totalProducts }}
+          S/. {{ detail.total | number : "1.2-2" }}
         </td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- Servicios -->
-<div class="flex items-center justify-start mt-2">
-  <p class="text-lg font-bold">SERVICIOS</p>
-  <button
-    (click)="showModal('service')"
-    type="button"
-    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-lg py-2 px-3 m-1 focus:outline-none"
-  >
-    <i class="fa-solid fa-gear"></i>
-  </button>
-
-  <nz-modal
-    [(nzVisible)]="visible"
-    *ngIf="modal == 'service'"
-    nzTitle="AGREGAR SERVICIOS"
-    (nzOnCancel)="cancel()"
-    (nzOnOk)="ok()"
-    nzOkDisabled
-    nzOkText="."
-    nzCancelText="CANCELAR"
-  >
-    <ng-container *nzModalContent>
-      <app-calculate-service
-        (event)="this.getData()"
-        [service]="detail.calculate"
-      ></app-calculate-service>
-    </ng-container>
-  </nz-modal>
-</div>
-
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-    <thead
-      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
-    >
-      <tr>
-        <th scope="col" class="px-6 py-3">ID</th>
-        <th scope="col" class="px-6 py-3">Foto</th>
-        <th scope="col" class="px-6 py-3">Servicio</th>
-        <th scope="col" class="px-6 py-3">P.Servicio</th>
-        <th scope="col" class="px-6 py-3">
-          <span class="sr-only">Edit</span>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr
-        *ngFor="let item of detail.services; let index = index"
-        class="bg-white border-b hover:bg-gray-50 text-gray-700"
-      >
-        <td class="px-6 py-4">
-          {{ index + 1 }}
-        </td>
-        <td class="px-6 py-4">
-          <p-image
-            [src]="
-              item.storage
-                ? service.apiUrl + '/' + item.storage
-                : 'assets/img/logo.png'
-            "
-            alt="Perfil"
-            width="30"
-            [preview]="true"
-          ></p-image>
-        </td>
-        <td class="px-6 py-4 capitalize">{{ item.name }}</td>
-        <td class="px-6 py-4">S/. {{ item.pivot.price_service }}</td>
-        <td class="px-6 py-4 text-right flex">
-          <a
-            nz-popconfirm
-            [nzPopconfirmTitle]="'Eliminar Servicio ' + item.name + '?'"
-            nzPopconfirmPlacement="top"
-            nzOkText="ELIMINAR"
-            nzCancelText="CANCELAR"
-            (nzOnConfirm)="deleteService(item)"
-            (nzOnCancel)="('')"
-            class="ml-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-          >
-            <i class="fa-solid fa-circle-minus"></i>
-          </a>
-        </td>
-      </tr>
-      <tr class="bg-white border-b hover:bg-gray-50 text-gray-700">
-        <td class="px-6 py-4" colSpan="3"></td>
-        <td class="px-6 py-4 font-bold text-green-600">
-          S/. {{ detail.totalServices }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
 }

@@ -4,24 +4,54 @@
   <div class="px-2 py-3">
     <div class="grid gap-2 mb-6">
       <div>
-        <label class="label-form">Producto</label>
-        <nz-select
-          class="w-full p-1 bg-gray-200 rounded-lg border-gray-300 border"
-          name="item.product_id"
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Selecciona un Producto"
-          [(ngModel)]="item.product_id"
-          (ngModelChange)="select($event)"
-        >
-          <nz-option
-            *ngFor="let product of products"
-            [nzLabel]="product.name"
-            [nzValue]="product.id"
-            nzValue="jack"
-          ></nz-option>
-        </nz-select>
-        <span class="error" *ngIf="errors">{{ errors.product_id }}</span>
+        <label class="label-form">Cantidad</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-box text-gray-500"></i>
+          </div>
+          <input
+            name="amount_item"
+            [(ngModel)]="item.amount_item"
+            type="number"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.amount_item }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">Descripción</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-box text-gray-500"></i>
+          </div>
+          <input
+            name="description_item"
+            [(ngModel)]="item.description_item"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.description_item }}</span>
+      </div>
+
+      <div>
+        <label class="label-form">Marca</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-box text-gray-500"></i>
+          </div>
+          <input
+            name="brand_item"
+            [(ngModel)]="item.brand_item"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.brand_item }}</span>
       </div>
 
       <div>
@@ -31,32 +61,15 @@
             <i class="fa-solid fa-box text-gray-500"></i>
           </div>
           <input
-            name="price_sell"
-            [(ngModel)]="item.price_sell"
+            name="price_item"
+            [(ngModel)]="item.price_item"
             type="number"
             step="any"
             autocomplete="off"
             class="input"
           />
         </div>
-        <span class="error" *ngIf="errors">{{ errors.price_sell }}</span>
-      </div>
-
-      <div>
-        <label class="label-form">Cantidad</label>
-        <div class="relative">
-          <div class="input-icon">
-            <i class="fa-solid fa-box text-gray-500"></i>
-          </div>
-          <input
-            name="quantity"
-            [(ngModel)]="item.quantity"
-            type="number"
-            autocomplete="off"
-            class="input"
-          />
-        </div>
-        <span class="error" *ngIf="errors">{{ errors.quantity }}</span>
+        <span class="error" *ngIf="errors">{{ errors.price_item }}</span>
       </div>
     </div>
 
