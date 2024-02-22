@@ -36,7 +36,6 @@ export class CalculateReportComponent {
       .subscribe(
         (res: any) => {
           this.detail = res;
-          console.log(res);
           if (this.detail.ruc_calculate && this.detail.property_calculate) {
             this.titleService.setTitle(
               this.detail.ruc_calculate + ' - ' + this.detail.property_calculate
