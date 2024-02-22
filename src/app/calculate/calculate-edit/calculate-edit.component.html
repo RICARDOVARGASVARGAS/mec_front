@@ -6,85 +6,333 @@
 
 <form class="overflow-x-scroll">
   <div class="px-2 py-3">
-    <div class="grid gap-2 mb-6 md:grid-cols-2">
-      <div>
-        <label class="label-form"
-          >Vehículo<i class="fa-brands fa-medapps text-red-600 font-bold"></i
-        ></label>
-        <nz-select
-          class="w-full p-1 bg-gray-200 rounded-lg border-gray-300 border"
-          name="item.car_id"
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Selecciona un Vehículo"
-          [(ngModel)]="item.car_id"
-        >
-          <nz-option
-            [nzLabel]="'Ninguno'"
-            [nzValue]="null"
-            nzValue="jack"
-          ></nz-option>
-          <nz-option
-            *ngFor="let car of data.cars"
-            [nzLabel]="
-              car.plate +
-              ' - ' +
-              car.example.name +
-              ' - ' +
-              car.color.name +
-              ' - ' +
-              car.year.name +
-              ' / ' +
-              car.client.document +
-              ' - ' +
-              car.client.name +
-              ' ' +
-              car.client.surname +
-              ' ' +
-              car.client.last_name
-            "
-            [nzValue]="car.id"
-            nzValue="jack"
-          ></nz-option>
-        </nz-select>
-
-        <span class="error" *ngIf="errors">{{ errors.car_id }}</span>
+    <div class="grid gap-2 mb-6 grid-cols-1 md:grid-cols-6">
+      <label class="label-form col-span-1 md:col-span-6">
+        DATOS EMPRESA / CONDUCTOR
+      </label>
+      <div class="col-span-1 md:col-span-3">
+        <label class="label-form">Propietario</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="property_calculate"
+            [(ngModel)]="item.property_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.property_calculate }}</span>
+        }
       </div>
 
-      <div>
-        <label class="label-form"
-          >Conductor <i class="fa-brands fa-medapps text-red-600 font-bold"></i>
-        </label>
-        <nz-select
-          class="w-full p-1 bg-gray-200 rounded-lg border-gray-300 border"
-          name="item.client_id"
-          nzShowSearch
-          nzAllowClear
-          nzPlaceHolder="Selecciona un Conductor"
-          [(ngModel)]="item.client_id"
-        >
-          <nz-option
-            [nzLabel]="'Ninguno'"
-            [nzValue]="null"
-            nzValue="jack"
-          ></nz-option>
-          <nz-option
-            *ngFor="let client of data.clients"
-            [nzLabel]="
-              client.document +
-              ' - ' +
-              client.name +
-              ' ' +
-              client.surname +
-              ' ' +
-              client.last_name
-            "
-            [nzValue]="client.id"
-            nzValue="jack"
-          ></nz-option>
-        </nz-select>
+      <div class="col-span-1 md:col-span-3">
+        <label class="label-form">Conductor</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="driver_calculate"
+            [(ngModel)]="item.driver_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.driver_calculate }}</span>
+        }
+      </div>
 
-        <span class="error" *ngIf="errors">{{ errors.client_id }}</span>
+      <div class="col-span-1 md:col-span-3">
+        <label class="label-form">RUC</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="ruc_calculate"
+            [(ngModel)]="item.ruc_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.ruc_calculate }}</span>
+        }
+      </div>
+
+      <div class="col-span-1 md:col-span-3">
+        <label class="label-form">DNI</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="dni_calculate"
+            [(ngModel)]="item.dni_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.dni_calculate }}</span>
+        }
+      </div>
+
+      <div class="col-span-1 md:col-span-2">
+        <label class="label-form">Teléfono Propietario</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="phone_calculate"
+            [(ngModel)]="item.phone_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.phone_calculate }}</span>
+        }
+      </div>
+
+      <div class="col-span-1 md:col-span-2">
+        <label class="label-form">Celular Propietario</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="cel_property_calculate"
+            [(ngModel)]="item.cel_property_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.cel_property_calculate }}</span>
+        }
+      </div>
+
+      <div class="col-span-1 md:col-span-2">
+        <label class="label-form">Celular Conductor</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="cel_driver_calculate"
+            [(ngModel)]="item.cel_driver_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.cel_driver_calculate }}</span>
+        }
+      </div>
+
+      <div class="col-span-1 md:col-span-3">
+        <label class="label-form">Dirección</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="address_calculate"
+            [(ngModel)]="item.address_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.address_calculate }}</span>
+        }
+      </div>
+      <label class="label-form col-span-1 md:col-span-6">
+        DATOS DEL VEHÍCULO
+      </label>
+      <div class="col-span-1 md:col-span-2">
+        <label class="label-form">Placa</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="plate_calculate"
+            [(ngModel)]="item.plate_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.plate_calculate }}</span>
+        }
+      </div>
+
+      <div class="col-span-1 md:col-span-2">
+        <label class="label-form">N° Motor</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="engine_calculate"
+            [(ngModel)]="item.engine_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.engine_calculate }}</span>
+        }
+      </div>
+
+      <div class="col-span-1 md:col-span-2">
+        <label class="label-form">N° Chasis </label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="chassis_calculate"
+            [(ngModel)]="item.chassis_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.chassis_calculate }}</span>
+        }
+      </div>
+
+      <div class="col-span-1 md:col-span-2">
+        <label class="label-form">Marca</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="brand_calculate"
+            [(ngModel)]="item.brand_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.brand_calculate }}</span>
+        }
+      </div>
+
+      <div class="col-span-1 md:col-span-2">
+        <label class="label-form">Modelo</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="model_calculate"
+            [(ngModel)]="item.model_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.model_calculate }}</span>
+        }
+      </div>
+
+      <div class="col-span-1 md:col-span-2">
+        <label class="label-form">Año</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="year_car_calculate"
+            [(ngModel)]="item.year_car_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.year_car_calculate }}</span>
+        }
+      </div>
+
+      <div class="col-span-1 md:col-span-2">
+        <label class="label-form">Color</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="color_calculate"
+            [(ngModel)]="item.color_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.color_calculate }}</span>
+        }
+      </div>
+
+      <div class="col-span-1 md:col-span-2">
+        <label class="label-form">Recorrido KM</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="km_calculate"
+            [(ngModel)]="item.km_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.km_calculate }}</span>
+        }
+      </div>
+
+      <div class="col-span-1 md:col-span-6">
+        <label class="label-form">Observación</label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="observation_calculate"
+            [(ngModel)]="item.observation_calculate"
+            type="text"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        @if (errors) {
+        <span class="error">{{ errors.observation_calculate }}</span>
+        }
       </div>
     </div>
 

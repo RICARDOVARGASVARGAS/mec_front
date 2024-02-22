@@ -12,14 +12,12 @@ export class CalculateEditComponent {
   id = null;
   loading = false;
   item: any = {};
-  data: any = [];
   errors: any = null;
 
   constructor(public service: ApiService, private route: ActivatedRoute) {
     route.params.subscribe((params: any) => {
       this.id = params.id;
       this.getInfo();
-      this.getData();
     });
   }
 
@@ -29,41 +27,6 @@ export class CalculateEditComponent {
       .subscribe((res: any) => {
         this.item = res.data;
       });
-  }
-
-  getData() {
-    this.loading = true;
-    const clients = this.service.api('mec/getClients', 'post', {
-      company_id: this.service.user.company_id,
-      per_page: 'all',
-    });
-
-    const cars = this.service.api(
-      'mec/getCars?included=client,brand,color,year,example',
-      'post',
-      {
-        company_id: this.service.user.company_id,
-        per_page: 'all',
-      }
-    );
-
-    const result = concat(clients, cars);
-
-    const data: any = [];
-
-    result.subscribe(
-      (results: any) => {
-        data.push(results.data);
-      },
-      (err: any) => {
-        console.log(err);
-      },
-      () => {
-        this.data.clients = data[0];
-        this.data.cars = data[1];
-        this.loading = false;
-      }
-    );
   }
 
   save() {
