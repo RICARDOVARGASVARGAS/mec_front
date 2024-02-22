@@ -28,7 +28,6 @@ export class CalculateDetailComponent {
       .subscribe(
         (res: any) => {
           this.detail = res;
-          console.log(res);
           this.loading = false;
         },
         (err: any) => {

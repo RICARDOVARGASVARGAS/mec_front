@@ -3,11 +3,13 @@ import { ApiService } from '../../services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { SharedModule } from '../../shared/shared.module';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-calculate-report',
   standalone: true,
-  imports: [SharedModule],
+  imports: [SharedModule, FormsModule,CommonModule],
   templateUrl: './calculate-report.component.html',
   styleUrl: './calculate-report.component.css',
 })
@@ -30,25 +32,19 @@ export class CalculateReportComponent {
   getData() {
     this.loading = true;
     this.service
-      .api(
-        `calculate/getCalculateDetail/${this.id}?included=car.client,car.brand,car.color,car.year,car.example`,
-        'get'
-      )
+      .api(`calculate/getListItemsCalculate/${this.id}`, 'get')
       .subscribe(
         (res: any) => {
           this.detail = res;
-          if (this.detail.calculate.car) {
+          console.log(res);
+          if (this.detail.ruc_calculate && this.detail.property_calculate) {
             this.titleService.setTitle(
-              this.detail.calculate.car.client.name +
-                ' ' +
-                this.detail.calculate.car.client.surname +
-                ' ' +
-                this.detail.calculate.car.client.last_name +
-                ' - ' +
-                this.detail.calculate.id
+              this.detail.ruc_calculate + ' - ' + this.detail.property_calculate
             );
           } else {
-            this.titleService.setTitle('Cotización: ' + this.detail.calculate.number);
+            this.titleService.setTitle(
+              'Cotización N°: ' + this.detail.calculate.number
+            );
           }
 
           this.loading = false;
