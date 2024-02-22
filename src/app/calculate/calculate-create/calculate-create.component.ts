@@ -10,49 +10,11 @@ import { concat } from 'rxjs';
 export class CalculateCreateComponent {
   loading = false;
   item: any = {};
-  data: any = [];
   errors: any = null;
 
   constructor(public service: ApiService) {}
 
-  ngOnInit() {
-    this.getData();
-  }
-
-  getData() {
-    this.loading = true;
-    const clients = this.service.api('mec/getClients', 'post', {
-      company_id: this.service.user.company_id,
-      per_page: 'all',
-    });
-
-    const cars = this.service.api(
-      'mec/getCars?included=client,brand,color,year,example',
-      'post',
-      {
-        company_id: this.service.user.company_id,
-        per_page: 'all',
-      }
-    );
-
-    const result = concat(clients, cars);
-
-    const data: any = [];
-
-    result.subscribe(
-      (results: any) => {
-        data.push(results.data);
-      },
-      (err: any) => {
-        console.log(err);
-      },
-      () => {
-        this.data.clients = data[0];
-        this.data.cars = data[1];
-        this.loading = false;
-      }
-    );
-  }
+  ngOnInit() {}
 
   save() {
     this.loading = true;
@@ -63,7 +25,7 @@ export class CalculateCreateComponent {
       .subscribe(
         (res: any) => {
           this.loading = false;
-          this.service.toast('success', 'Venta Registrada');
+          this.service.toast('success', 'Cotización Registrada');
           this.service.goPage('calculate/edit/' + res.data.id);
         },
         (err: any) => {
