@@ -197,10 +197,10 @@
           {{ item.ticket }}
         </td>
         <td class="border-style-table text-center md:w-64">
-          S/. {{ item.price_sell }}
+          S/. {{ item.price_sell | number : "1.2-2" }}
         </td>
         <td class="border-style-table text-center md:w-64">
-          S/. {{ item.pivot.quantity * item.price_sell }}
+          S/. {{ item.pivot.quantity * item.price_sell | number : "1.2-2" }}
         </td>
       </tr>
       }
@@ -208,7 +208,7 @@
       <tr class="bg-white border-b hover:bg-gray-50 text-gray-700">
         <td class="border-style-table" colSpan="3"></td>
         <td class="border-style-table text-center">
-          S/. {{ detail.totalProducts }}
+          S/. {{ detail.totalProducts | number : "1.2-2" }}
         </td>
       </tr>
     </tbody>
@@ -237,14 +237,14 @@
           {{ item.ticket }}
         </td>
         <td class="border-style-table text-center md:w-64">
-          S/. {{ item.pivot.price_service }}
+          S/. {{ item.pivot.price_service | number : "1.2-2" }}
         </td>
       </tr>
       }
       <tr class="bg-white border-b hover:bg-gray-50 text-gray-700">
         <td class="border-style-table" colSpan="1"></td>
         <td class="border-style-table text-center">
-          S/. {{ detail.totalServices }}
+          S/. {{ detail.totalServices | number : "1.2-2" }}
         </td>
       </tr>
     </tbody>
@@ -266,16 +266,20 @@
     </thead>
     <tbody class="font-bold">
       <tr>
-        <td class="border-style-table text-center">S/. {{ detail.total }}</td>
         <td class="border-style-table text-center">
-          S/. {{ detail.totalPayments }}
+          S/. {{ detail.total | number : "1.2-2" }}
+        </td>
+        <td class="border-style-table text-center">
+          S/. {{ detail.totalPayments | number : "1.2-2" }}
         </td>
         @if (detail.sale.discount > 0) {
         <td class="border-style-table text-center">
-          S/. {{ detail.sale.discount }}
+          S/. {{ detail.sale.discount | number : "1.2-2" }}
         </td>
         } @if (detail.pending > 0) {
-        <td class="border-style-table text-center">S/. {{ detail.pending }}</td>
+        <td class="border-style-table text-center">
+          S/. {{ detail.pending | number : "1.2-2" }}
+        </td>
         }
       </tr>
     </tbody>

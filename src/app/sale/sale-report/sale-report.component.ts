@@ -3,11 +3,12 @@ import { ApiService } from '../../services/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { SharedModule } from '../../shared/shared.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sale-report',
   standalone: true,
-  imports: [SharedModule],
+  imports: [SharedModule, CommonModule],
   templateUrl: './sale-report.component.html',
   styleUrl: './sale-report.component.css',
 })
