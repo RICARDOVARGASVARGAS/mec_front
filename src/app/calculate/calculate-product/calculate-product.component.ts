@@ -21,7 +21,7 @@ export class CalculateProductComponent {
     this.loading = true;
     this.errors = null;
     this.service
-      .api('calculate/registerItemCalculate', 'post', this.item)
+      .api('calculate/registerProductCalculate', 'post', this.item)
       .subscribe(
         (res: any) => {
           this.event.emit(res.data);

@@ -10,14 +10,14 @@
             <i class="fa-solid fa-box text-gray-500"></i>
           </div>
           <input
-            name="amount_item"
-            [(ngModel)]="item.amount_item"
+            name="amount"
+            [(ngModel)]="item.amount"
             type="number"
             autocomplete="off"
             class="input"
           />
         </div>
-        <span class="error" *ngIf="errors">{{ errors.amount_item }}</span>
+        <span class="error" *ngIf="errors">{{ errors.amount }}</span>
       </div>
 
       <div>
@@ -27,31 +27,33 @@
             <i class="fa-solid fa-box text-gray-500"></i>
           </div>
           <input
-            name="description_item"
-            [(ngModel)]="item.description_item"
+            name="description"
+            [(ngModel)]="item.description"
             type="text"
             autocomplete="off"
             class="input"
           />
         </div>
-        <span class="error" *ngIf="errors">{{ errors.description_item }}</span>
+        <span class="error" *ngIf="errors">{{ errors.description }}</span>
       </div>
 
       <div>
-        <label class="label-form">Marca</label>
+        <label class="label-form"
+          >Marca <i class="fa-brands fa-medapps text-red-600 font-bold"></i
+        ></label>
         <div class="relative">
           <div class="input-icon">
             <i class="fa-solid fa-box text-gray-500"></i>
           </div>
           <input
-            name="brand_item"
-            [(ngModel)]="item.brand_item"
+            name="brand"
+            [(ngModel)]="item.brand"
             type="text"
             autocomplete="off"
             class="input"
           />
         </div>
-        <span class="error" *ngIf="errors">{{ errors.brand_item }}</span>
+        <span class="error" *ngIf="errors">{{ errors.brand }}</span>
       </div>
 
       <div>
@@ -61,15 +63,15 @@
             <i class="fa-solid fa-box text-gray-500"></i>
           </div>
           <input
-            name="price_item"
-            [(ngModel)]="item.price_item"
+            name="price"
+            [(ngModel)]="item.price"
             type="number"
             step="any"
             autocomplete="off"
             class="input"
           />
         </div>
-        <span class="error" *ngIf="errors">{{ errors.price_item }}</span>
+        <span class="error" *ngIf="errors">{{ errors.price }}</span>
       </div>
     </div>
 

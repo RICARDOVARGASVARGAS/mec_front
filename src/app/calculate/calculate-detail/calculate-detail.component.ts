@@ -24,7 +24,7 @@ export class CalculateDetailComponent {
   getData() {
     this.loading = true;
     this.service
-      .api(`calculate/getListItemsCalculate/${this.id}`, 'get')
+      .api(`calculate/getListProductsCalculate/${this.id}`, 'get')
       .subscribe(
         (res: any) => {
           this.detail = res;
@@ -56,7 +56,7 @@ export class CalculateDetailComponent {
     console.log(item);
     this.loading = true;
     this.service
-      .api(`calculate/deleteItemCalculate/${item.id}`, 'delete')
+      .api(`calculate/deleteProductCalculate/${item.id}`, 'delete')
       .subscribe(
         (res: any) => {
           this.loading = false;

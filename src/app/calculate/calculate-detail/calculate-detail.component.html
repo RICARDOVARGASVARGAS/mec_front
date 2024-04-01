@@ -95,18 +95,18 @@
         *ngFor="let item of detail.items; let index = index"
         class="bg-white border-b hover:bg-gray-50 text-gray-700"
       >
-        <td class="px-6 py-4">{{ item.amount_item }}</td>
-        <td class="px-6 py-4 text-center">{{ item.description_item }}</td>
-        <td class="px-6 py-4 text-center">{{ item.brand_item }}</td>
-        <td class="px-6 py-4">S/. {{ item.price_item | number : "1.2-2" }}</td>
+        <td class="px-6 py-4">{{ item.amount }}</td>
+        <td class="px-6 py-4 text-center">{{ item.description }}</td>
+        <td class="px-6 py-4 text-center">{{ item.brand }}</td>
+        <td class="px-6 py-4">S/. {{ item.price | number : "1.2-2" }}</td>
         <td class="px-6 py-4">
-          S/. {{ item.amount_item * item.price_item | number : "1.2-2" }}
+          S/. {{ item.amount * item.price | number : "1.2-2" }}
         </td>
         <td class="px-6 py-4 text-right flex">
           <a
             nz-popconfirm
             [nzPopconfirmTitle]="
-              'Eliminar Producto ' + item.description_item + '?'
+              'Eliminar Producto ' + item.description + '?'
             "
             nzPopconfirmPlacement="top"
             nzOkText="ELIMINAR"
