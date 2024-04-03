@@ -6,6 +6,7 @@ import { CalculateIndexComponent } from './calculate-index/calculate-index.compo
 import { CalculateCreateComponent } from './calculate-create/calculate-create.component';
 import { CalculateEditComponent } from './calculate-edit/calculate-edit.component';
 import { CalculateProductComponent } from './calculate-product/calculate-product.component';
+import { CalculateServiceComponent } from './calculate-service/calculate-service.component';
 import { CalculateDetailComponent } from './calculate-detail/calculate-detail.component';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
@@ -22,6 +23,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     CalculateEditComponent,
     CalculateProductComponent,
     CalculateDetailComponent,
+    CalculateServiceComponent,
   ],
   imports: [
     CommonModule,

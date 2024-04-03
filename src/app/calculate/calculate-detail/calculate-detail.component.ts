@@ -24,9 +24,10 @@ export class CalculateDetailComponent {
   getData() {
     this.loading = true;
     this.service
-      .api(`calculate/getListProductsCalculate/${this.id}`, 'get')
+      .api(`calculate/getCalculateDetail/${this.id}`, 'get')
       .subscribe(
         (res: any) => {
+          console.log(res);
           this.detail = res;
           this.loading = false;
         },
@@ -61,6 +62,25 @@ export class CalculateDetailComponent {
         (res: any) => {
           this.loading = false;
           this.service.toast('success', 'Producto Eliminado');
+          this.getData();
+        },
+        (err: any) => {
+          console.log(err);
+          this.loading = false;
+          this.service.toast('error', 'Eliminación fallida');
+        }
+      );
+  }
+
+  deleteService(item: any) {
+    console.log(item);
+    this.loading = true;
+    this.service
+      .api(`calculate/deleteServiceCalculate/${item.id}`, 'delete')
+      .subscribe(
+        (res: any) => {
+          this.loading = false;
+          this.service.toast('success', 'Servicio Eliminado');
           this.getData();
         },
         (err: any) => {
