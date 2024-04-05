@@ -270,5 +270,20 @@
       </tr>
     </tbody>
   </table>
+
+  <!-- Observación -->
+  @if (detail.calculate.observation_calculate) {
+  <div class="grid grid-cols-1 border border-black mt-2">
+    <div class="border-style col-span-1 text-center bg-blue-200">
+      <span class="font-bold">OBSERVACIÓN</span>
+    </div>
+    <div class="border-style col-span-1">
+      <span class="font-bold">
+        {{ detail.calculate.observation_calculate }}
+      </span>
+    </div>
+  </div>
+  }
 </div>
+
 }
