@@ -27,7 +27,6 @@ export class CalculateDetailComponent {
       .api(`calculate/getCalculateDetail/${this.id}`, 'get')
       .subscribe(
         (res: any) => {
-          console.log(res);
           this.detail = res;
           this.loading = false;
         },

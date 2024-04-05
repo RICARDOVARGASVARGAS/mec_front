@@ -166,7 +166,7 @@
   </div>
 
   <!-- Productos -->
-  @if (detail.items.length > 0) {
+  @if (detail.products.length > 0) {
   <table class="border-style w-full mt-1">
     <thead>
       <tr>
@@ -183,22 +183,22 @@
       </tr>
     </thead>
     <tbody class="font-bold">
-      @for (item of detail.items; track item.id) {
+      @for (item of detail.products; track item.id) {
       <tr>
         <td class="border-style-table text-center md:w-24">
-          {{ item.amount_item }}
+          {{ item.amount }}
         </td>
         <td class="border-style-table uppercase">
-          {{ item.description_item }}
+          {{ item.description }}
         </td>
         <td class="border-style-table uppercase">
-          {{ item.brand_item }}
+          {{ item.brand }}
         </td>
         <td class="border-style-table text-center md:w-36">
-          S/. {{ item.price_item | number : "1.2-2" }}
+          S/. {{ item.price | number : "1.2-2" }}
         </td>
         <td class="border-style-table text-center md:w-36">
-          S/. {{ item.amount_item * item.price_item | number : "1.2-2" }}
+          S/. {{ item.amount * item.price | number : "1.2-2" }}
         </td>
       </tr>
       }
@@ -206,7 +206,43 @@
       <tr class="bg-white border-b hover:bg-gray-50 text-gray-700">
         <td class="border-style-table" colSpan="4"></td>
         <td class="border-style-table text-center">
-          S/. {{ detail.total | number : "1.2-2" }}
+          S/. {{ detail.totalProducts | number : "1.2-2" }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  }
+
+  <!-- Servicios -->
+  @if (detail.services.length > 0) {
+  <table class="border-style w-full mt-1">
+    <thead>
+      <tr>
+        <th class="border-style-table text-center bg-blue-200" colSpan="3">
+          SERVICIOS
+        </th>
+      </tr>
+      <tr>
+        <th class="border-style-table">DESCRIPCIÓN</th>
+        <th class="border-style-table">TOTAL</th>
+      </tr>
+    </thead>
+    <tbody class="font-bold">
+      @for (item of detail.services; track item.id) {
+      <tr>
+        <td class="border-style-table uppercase">
+          {{ item.description }}
+        </td>
+        <td class="border-style-table text-center md:w-36">
+          S/. {{ item.price | number : "1.2-2" }}
+        </td>
+      </tr>
+      }
+
+      <tr class="bg-white border-b hover:bg-gray-50 text-gray-700">
+        <td class="border-style-table" colspan="1"></td>
+        <td class="border-style-table text-center">
+          S/. {{ detail.totalServices | number : "1.2-2" }}
         </td>
       </tr>
     </tbody>
@@ -214,17 +250,25 @@
   }
 
   <!-- Detalle -->
-  <!-- <table class="border-style w-full mt-2">
+  <table class="border-style w-full mt-2">
     <thead>
       <tr>
+        <th class="border-style-table">PRODUCTOS</th>
+        <th class="border-style-table">SERVICIOS</th>
         <th class="border-style-table">TOTAL</th>
       </tr>
     </thead>
     <tbody class="font-bold">
       <tr>
+        <td class="border-style-table text-center">
+          S/. {{ detail.totalProducts }}
+        </td>
+        <td class="border-style-table text-center">
+          S/. {{ detail.totalServices }}
+        </td>
         <td class="border-style-table text-center">S/. {{ detail.total }}</td>
       </tr>
     </tbody>
-  </table> -->
+  </table>
 </div>
 }

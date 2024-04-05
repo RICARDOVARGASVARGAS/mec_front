@@ -32,9 +32,10 @@ export class CalculateReportComponent {
   getData() {
     this.loading = true;
     this.service
-      .api(`calculate/getListItemsCalculate/${this.id}`, 'get')
+      .api(`calculate/getCalculateDetail/${this.id}`, 'get')
       .subscribe(
         (res: any) => {
+          console.log(res);
           this.detail = res;
           if (this.detail.ruc_calculate && this.detail.property_calculate) {
             this.titleService.setTitle(
