@@ -1,11 +1,12 @@
 @if (loading) {
 <app-load> Cargando Reporte ... </app-load>
 } @if (detail){
-<div class="p-1">
+<div class="p-1" id="invoice_container">
   <!-- Cabecera -->
   <div class="grid grid-cols-3 p-2">
     <div class="text-left">
       <img
+        (click)="handleExport()"
         [src]="
           service.user.company.storage
             ? service.apiUrl + '/' + service.user.company.storage
@@ -27,15 +28,15 @@
   <div class="mb-5 flex justify-between">
     <div class="">
       @if (service.user.company.account_one) {
-      <div class="border pl-2 border-black w-72">
+      <div class="border pl-2 border-black w-72 py-2.5 print:py-0">
         <span class="font-bold">{{ service.user.company.account_one }}</span>
       </div>
       } @if (service.user.company.account_two) {
-      <div class="border pl-2 border-black w-72">
+      <div class="border pl-2 border-black w-72 py-2.5 print:py-0">
         <span class="font-bold">{{ service.user.company.account_two }}</span>
       </div>
       } @if (service.user.company.account_three) {
-      <div class="border pl-2 border-black w-72">
+      <div class="border pl-2 border-black w-72 py-2.5 print:py-0">
         <span class="font-bold">{{ service.user.company.account_three }}</span>
       </div>
       }

@@ -1,7 +1,7 @@
 .border-style {
-    @apply border pl-1 border-black;
+  @apply border pl-1 border-black py-2.5 print:py-0;
 }
 
 .border-style-table {
-    @apply border-2 pl-1 border-black;
+  @apply border-2 pl-1 border-black py-2.5 print:py-0;
 }
