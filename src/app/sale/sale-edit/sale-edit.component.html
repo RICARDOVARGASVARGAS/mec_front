@@ -194,6 +194,26 @@
         </div>
         <span class="error" *ngIf="errors">{{ errors.discount }}</span>
       </div>
+
+      <div class="md:col-span-2">
+        <label class="label-form"
+          >Observación<i class="fa-brands fa-medapps text-red-600 font-bold"></i
+        ></label>
+        <div class="relative">
+          <div class="input-icon">
+            <i class="fa-solid fa-signature text-gray-500"></i>
+          </div>
+          <input
+            name="observation"
+            [(ngModel)]="item.observation"
+            type="text"
+            step="any"
+            autocomplete="off"
+            class="input"
+          />
+        </div>
+        <span class="error" *ngIf="errors">{{ errors.observation }}</span>
+      </div>
     </div>
 
     <div class="flex">
@@ -234,6 +254,7 @@
       <a
         *setPermission="['sale.print']"
         [routerLink]="['/report-sale', item.id]"
+        target="_blank"
         class="btn-list"
       >
         <i class="fa-solid fa-print"></i>
