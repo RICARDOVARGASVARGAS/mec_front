@@ -34,7 +34,7 @@ export class SaleReportComponent {
     this.loading = true;
     this.service
       .api(
-        `sale/getSaleDetail/${this.id}?included=car.client,car.brand,car.color,car.year,car.example`,
+        `sale/getSaleDetail/${this.id}?included=client,car.client,car.brand,car.color,car.year,car.example`,
         'get'
       )
       .subscribe(
