@@ -252,6 +252,35 @@
   </table>
   }
 
+  <!-- PAGOS -->
+
+  @if (detail.payments.length > 0) {
+  <table class="border-style w-full mt-1">
+    <thead>
+      <tr>
+        <th class="border-style-table text-center bg-blue-200" colSpan="2">
+          PAGOS
+        </th>
+      </tr>
+      <tr>
+        <th class="border-style-table">F.PAGO</th>
+        <th class="border-style-table">TOTAL</th>
+      </tr>
+    </thead>
+    <tbody class="font-bold">
+      @for (item of detail.payments; track item.id) {
+      <tr>
+        <td class="border-style-table text-center">
+          {{ item.date_payment | date : "dd/MM/yyyy" }}
+        </td>
+        <td class="border-style-table text-center">
+          S/. {{ item.amount | number : "1.2-2" }}
+        </td>
+      </tr>
+      }
+  </table>
+  }
+
   <!-- Detalle -->
   <table class="border-style w-full mt-2">
     <thead>
