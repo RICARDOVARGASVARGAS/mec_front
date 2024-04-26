@@ -16,8 +16,8 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideNzI18n(en_US),
-    importProvidersFrom(FormsModule),
-    importProvidersFrom(HttpClientModule),
+    importProvidersFrom([FormsModule, HttpClientModule]),
+    importProvidersFrom(),
     provideAnimations(),
     {
       provide: HTTP_INTERCEPTORS,
