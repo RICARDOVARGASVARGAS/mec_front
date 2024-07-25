@@ -9,6 +9,7 @@ import { ApiService } from '../../services/api.service';
 export class SaleIndexComponent {
   per_page = null;
   search = '';
+  status = '';
   loading = false;
   data: any = [];
 
@@ -16,14 +17,17 @@ export class SaleIndexComponent {
     this.getData();
   }
 
-  getData($event: any = [5, '']) {
+  getData($event: any = [5, '', '']) {
     this.per_page = $event[0];
     this.search = $event[1];
+    this.status = $event[2];
+    console.log($event);
     this.list();
   }
 
   list() {
     this.loading = true;
+    console.log(this.status);
     this.service
       .api(
         `sale/getSales?included=client,car.client,car.brand,car.color,car.year,car.example`,
@@ -32,6 +36,7 @@ export class SaleIndexComponent {
           company_id: this.service.user.company_id,
           search: this.search,
           perPage: this.per_page,
+          status: this.status,
         }
       )
       .subscribe(

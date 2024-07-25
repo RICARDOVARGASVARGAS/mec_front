@@ -48,7 +48,7 @@ export class SaleReportComponent {
               ' ' +
               this.detail.sale.car.client.last_name +
               ' - ' +
-              this.detail.sale.id
+              this.detail.sale.number
           );
           this.loading = false;
         },
@@ -83,7 +83,7 @@ export class SaleReportComponent {
           ' ' +
           this.detail.sale.car.client.last_name +
           ' - ' +
-          this.detail.sale.id + '.pdf'
+          this.detail.sale.number + '.pdf'
       );
     });
   }

@@ -3,13 +3,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrl: './search.component.css'
+  styleUrl: './search.component.css',
 })
 export class SearchComponent {
   @Output() data = new EventEmitter();
   per_page: number | string = 5;
 
   search: string = '';
+  status: string = '';
 
   results = [
     {
@@ -34,12 +35,35 @@ export class SearchComponent {
     },
   ];
 
+  statuses = [
+    {
+      value: '',
+      name: 'Todos',
+    },
+    {
+      value: 'pending',
+      name: 'Pendiente',
+    },
+    {
+      value: 'done',
+      name: 'Pagado',
+    },
+    {
+      value: 'debt',
+      name: 'Deuda',
+    },
+    {
+      value: 'cancelled',
+      name: 'Cancelado',
+    },
+  ];
+
   ngOnInit(): void {
     this.sendSearch();
   }
 
   sendSearch() {
-    this.data.emit([this.per_page, this.search]);
+    this.data.emit([this.per_page, this.search, this.status]);
   }
 
   clear() {
