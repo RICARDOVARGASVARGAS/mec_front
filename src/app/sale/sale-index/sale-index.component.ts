@@ -46,6 +46,7 @@ export class SaleIndexComponent {
           res.meta ? (this.meta = res.meta) : (this.meta = null);
         },
         (err: any) => {
+          // console.log(err);
           this.loading = false;
           this.service.toast('error', err.error.message);
         }
