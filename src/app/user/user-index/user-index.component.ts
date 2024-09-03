@@ -26,9 +26,10 @@ export class UserIndexComponent {
     this.loading = true;
     this.service
       .api(`user/getUsers`, 'post', {
-        company: this.service.user.company_id,
+        company_id: this.service.user.company_id,
         search: this.search,
-       perPage: this.per_page,
+        perPage: this.per_page,
+        page: this.actualPage,
       })
       .subscribe(
         (res: any) => {

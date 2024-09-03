@@ -9,6 +9,7 @@ import { ApiService } from '../../services/api.service';
 export class BoxIndexComponent {
   per_page = null;
   search = '';
+  status = '';
   loading = false;
   data: any = [];
 
@@ -28,7 +29,8 @@ export class BoxIndexComponent {
       .api(`mec/getBoxes`, 'post', {
         company_id: this.service.user.company_id,
         search: this.search,
-       perPage: this.per_page,
+        perPage: this.per_page,
+        page: this.actualPage,
       })
       .subscribe(
         (res: any) => {

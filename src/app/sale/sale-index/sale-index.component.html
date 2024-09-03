@@ -5,6 +5,20 @@
 <app-title>Lista de Ventas</app-title>
 
 <app-search (data)="getData($event)">
+  <div menu>
+    <select
+      (change)="getData()"
+      [(ngModel)]="status"
+      class="bg-gray-50 w-18 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"
+    >
+      @for (status of statuses; track status.value) {
+      <option value="{{ status.value }}">
+        {{ status.name }}
+      </option>
+      }
+    </select>
+  </div>
+
   <a
     *setPermission="['sale.create']"
     (click)="service.goPage('sale/create')"
@@ -63,7 +77,7 @@
           </span>
         </td>
         <td class="px-6 py-4 w-32">
-          {{ item.payment_date | date: "dd/MM/yyyy" }}
+          {{ item.payment_date | date : "dd/MM/yyyy" }}
         </td>
         <!-- <td class="px-6 py-4 capitalize">
           <div *ngIf="item.client">

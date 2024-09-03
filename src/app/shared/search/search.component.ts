@@ -29,33 +29,10 @@ export class SearchComponent {
       value: 20,
       name: '20',
     },
-    {
-      value: null,
-      name: '♾️',
-    },
-  ];
-
-  statuses = [
-    {
-      value: '',
-      name: 'Todos',
-    },
-    {
-      value: 'pending',
-      name: 'Pendiente',
-    },
-    {
-      value: 'done',
-      name: 'Pagado',
-    },
-    {
-      value: 'debt',
-      name: 'Deuda',
-    },
-    {
-      value: 'cancelled',
-      name: 'Cancelado',
-    },
+    // {
+    //   value: null,
+    //   name: '♾️',
+    // },
   ];
 
   ngOnInit(): void {

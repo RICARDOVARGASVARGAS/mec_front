@@ -25,15 +25,12 @@ export class CalculateIndexComponent {
   list() {
     this.loading = true;
     this.service
-      .api(
-        `calculate/getCalculates`,
-        'post',
-        {
-          company_id: this.service.user.company_id,
-          search: this.search,
-         perPage: this.per_page,
-        }
-      )
+      .api(`calculate/getCalculates`, 'post', {
+        company_id: this.service.user.company_id,
+        search: this.search,
+        perPage: this.per_page,
+        page: this.actualPage,
+      })
       .subscribe(
         (res: any) => {
           this.loading = false;

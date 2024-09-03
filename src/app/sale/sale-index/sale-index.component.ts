@@ -12,6 +12,30 @@ export class SaleIndexComponent {
   status = '';
   loading = false;
   data: any = [];
+  perPage: number = 5;
+
+  statuses = [
+    {
+      value: '',
+      name: 'Todos',
+    },
+    {
+      value: 'pending',
+      name: 'Pendiente',
+    },
+    {
+      value: 'done',
+      name: 'Pagado',
+    },
+    {
+      value: 'debt',
+      name: 'Deuda',
+    },
+    {
+      value: 'cancelled',
+      name: 'Cancelado',
+    },
+  ];
 
   constructor(public service: ApiService) {
     this.getData();
@@ -20,7 +44,7 @@ export class SaleIndexComponent {
   getData($event: any = [5, '', '']) {
     this.per_page = $event[0];
     this.search = $event[1];
-    this.status = $event[2];
+    // this.status = $event[2];
     console.log($event);
     this.list();
   }
@@ -36,6 +60,7 @@ export class SaleIndexComponent {
           company_id: this.service.user.company_id,
           search: this.search,
           perPage: this.per_page,
+          page: this.actualPage,
           status: this.status,
         }
       )

@@ -28,7 +28,8 @@ export class ColorIndexComponent {
       .api(`mec/getColors`, 'post', {
         company_id: this.service.user.company_id,
         search: this.search,
-       perPage: this.per_page,
+        perPage: this.per_page,
+        page: this.actualPage,
       })
       .subscribe(
         (res: any) => {
