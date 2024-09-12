@@ -59,4 +59,21 @@ export class ClientEditComponent {
       }
     );
   }
+
+  getDataClient() {
+    this.service.getDataPeople(this.item.document).subscribe(
+      (res: any) => {
+        if (res.information) {
+          this.item.name = res.information.names;
+          this.item.surname = res.information.father_last_name;
+          this.item.last_name = res.information.mother_last_name;
+        } else {
+          this.service.toast('warning', 'No se encontraron resultados');
+        }
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
+  }
 }

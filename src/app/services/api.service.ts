@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { API_URL } from '../config/Link';
 
 @Injectable({
@@ -103,6 +103,17 @@ export class ApiService {
         return this.http.delete(`${this.apiUrl}/${url}`);
       default:
         return this.http.get(`${this.apiUrl}/${url}`);
+    }
+  }
+
+  getDataPeople(document: string = ''): Observable<any> {
+    if (document.length !== 8) {
+      this.toast('warning', 'El documento debe ser de 8 digitos');
+      return of('null');
+    } else {
+      return this.http.get(
+        `https://data-people.codepro-peru.com/api/getPerson/${document}`
+      );
     }
   }
 }
