@@ -40,17 +40,21 @@ export class ClientCreateComponent {
   // }
 
   getDataClient() {
+    this.loading = true;
     this.service.getDataPeople(this.item.document).subscribe(
       (res: any) => {
-        if(res.information){
+        if (res.information) {
+          this.loading = false;
           this.item.name = res.information.names;
           this.item.surname = res.information.father_last_name;
           this.item.last_name = res.information.mother_last_name;
-        }else{
+        } else {
+          this.loading = false;
           this.service.toast('warning', 'No se encontraron resultados');
         }
       },
       (err: any) => {
+        this.loading = false;
         console.log(err);
       }
     );
